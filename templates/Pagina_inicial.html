@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/inicial.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <title>Mundial Qatar 2022</title>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+           
+            <nav>
+                <a href="/" class="activo">Inicio</a>
+                <a href="/Cartelera">Programación</a>
+                <a href="/Inises">Partidos on-line</a>
+        
+
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="Banner">
+            <div class="contenedor">
+                <h1 class="sec_Banner">Bienvenido a la copa mundial de la FIFA QATAR 2022</h1>
+            </div>
+
+
+        </div>
+        <div class="Recomendados">
+            <div class="contenedor-titulo">
+                <h2>Modulos principales</h2>
+            </div>
+            <div class="Contenedor-princpipal">
+                <div class="Contenedor-Modulos">
+                    <div class="modl">
+                        <div class="in_mod">
+                            <h2>Programación</h2>
+                            <a href="/Pelicula1"><img src="{{url_for('static',filename='/image/Programacion.jpg')}}" alt=""></a>
+                            <h4 class="piepel" id="RPelicula1"> </h4>
+                        </div>
+                        <div class="in_mod">
+                            <h2>Partidos on-line</h2>
+                            <a href="/Pelicula2"><img src="{{url_for('static',filename='/image/online.jpg')}}" alt=""></a>
+                            <h4 class="piepel" id="RPelicula2"></h4>
+                        </div>
+                        <div class="in_mod">
+                            <h2>Configuracion</h2>
+                            <a href="/Pelicula3"><img src="{{url_for('static',filename='/image/Configuracion.jpg')}}" alt=""></a>
+                            <h4 class="piepel" id="RPelicula3"></h4>
+                        </div>
+                        <div class="in_mod">
+                            <h2>Vista web</h2>
+                            <a href="/Pelicula4"><img src="{{url_for('static',filename='/image/Vista.jpg')}}" alt=""></a>
+                            <h4 class="piepel" id="RPelicula4"></h4>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </main>
+</body>
+
+</html>

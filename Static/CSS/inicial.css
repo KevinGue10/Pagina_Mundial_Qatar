@@ -1,0 +1,189 @@
+:root {
+    --azul: #000668;
+    --fondo: #1a090c;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--fondo);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contenedor {
+    width: 95%;
+    margin: auto
+}
+
+header {
+    padding: 5px 0;
+    background-color: rgb(52,4,28);
+}
+.contenedor img{
+    width: 10%;
+    margin-left: 3px;
+}
+
+header .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    color: #ebe4e3;
+    font-size: 40px;
+    margin-left: 2px;
+    font-weight: bold;
+    text-align: center;
+}
+
+header nav a {
+    color: #ebe4e3;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+
+}
+
+header nav a:hover,
+header nav a.activo {
+    color: #ECAB00;
+}
+/*-------- submenu ajustes------*/
+ul, ol { list-style: none;}
+li, ol{ list-style: none;}
+.nav li ul {
+display: none;
+position: absolute;
+min-width: 140px;
+background-color: rgba(200, 200, 220, 0.8);
+}
+nav li:hover > ul {
+    display: block;
+    -webkit-transform: scale(1.15);
+    transform: translate(0%, -2%);
+    filter: drop-shadow(8px 8px 5px #01010a65);
+}
+
+/*-------- Banner------*/
+
+.Banner {
+    font-size: 14px;
+    height: 550px;
+    color: #E7E7F6;
+    background: linear-gradient(rgba(10, 10, 20, .30)30%, rgba(10, 10, 20, .50)50%), url(../image/Banner.jpg);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: end;
+}
+
+.Banner .contenedor {
+    margin: 10%;
+    margin-bottom: 5%;
+
+}
+
+.Banner .sec_Banner {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #E7E7F6;
+}
+
+.Banner .titulo {
+    font-size: 45px;
+    font-weight: 400px;
+    margin-bottom: 15px;
+}
+
+.Banner .descripcion {
+    font-size: 20px;
+    margin-bottom: 10px;
+    max-width: 60%;
+}
+
+.Banner .boton {
+    background: rgba(220, 220, 100, .70);
+    margin-top: 10px;
+    border: none;
+    padding: 1% 60px;
+    font: helvetica;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s ease all;
+    border-radius: 10px;
+}
+
+.Banner .boton:hover {
+    background: rgba(105, 200, 255, 0.8);
+    color: #000668;
+}
+
+
+/*-------- Peliculas Recomendadas------*/
+.Recomendados {
+    margin-bottom: 50px;
+    margin: 25px;
+}
+
+.Recomendados .contenedor-titulo {
+    margin-bottom: 30px;
+    font-size: 25px;
+    color:#ECAB00;
+}
+
+.Recomendados.Contenedor-principal {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.Recomendados .modl {
+    display: flex;
+   
+    align-items: left;
+    justify-content: space-between;
+    overflow: hidden;
+    color:#E7E7F6
+}
+
+
+.Recomendados .modl .in_mod {
+    width: 20%;
+    transition: .3s ease all;
+}
+
+.Recomendados .modl .in_mod .piepel {
+    align-items: center;
+    margin-top: 4%;
+    margin-left: 50px;
+    margin-bottom: 20%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.Recomendados .modl .in_mod img {
+    width: 85%;
+    vertical-align: top;
+    margin: 20px;
+    margin-left: 10px;
+    filter: drop-shadow(8px 8px 5px #01010a65);
+    border-radius: 5px;
+}
+
+.Recomendados .modl .in_mod :hover img {
+    filter: contrast(1.2) saturate(1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);}
