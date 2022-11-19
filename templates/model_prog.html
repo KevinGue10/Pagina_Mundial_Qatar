@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='CSS/modprog.css')}}">
+    <title>Programacion</title>
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+           
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion" class="activo">Programación</a>
+                <a href="/Inises">Partidos on-line</a>
+        
+
+            </nav>
+        </div>
+    </header>
+    
+        <section class="info">
+
+            {% block formulario%}
+            <h4>Programacion de partidos </h4>
+            <input type="text" id="titulo" class="controls" placeholder="Titulo de la película">
+            <input type="text" id="generos" class="controls" placeholder="Generos de la película ">
+            <input type="text" id="duracion" class="controls" placeholder="Duración en minutos de la pelicula">
+            <input type="text" id="sinopsis" class="controls" placeholder="Resumen de la película">
+            <input type="text" id="titulo_org" class="controls" placeholder="Titulo Original">
+            <input type="text" id="reparto" class="controls" placeholder="Reparto">
+            <input type="text" id="director" class="controls" placeholder="Director">
+            {% endblock %}
+            
+        </section>
+
+    </div>
+   
+
+
+
+
+   
+
+<script src="{{url_for('static',filename='/JS/editp.js')}}"> </script>
+</body>
+
+</html>

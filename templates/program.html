@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/program.css')}}">
+    <title>Programacion</title>
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+           
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion" class="activo">Programación</a>
+                <a href="/Inises">Partidos on-line</a>
+        
+
+            </nav>
+        </div>
+    </header>
+
+    <div class="Contenedor-princpipal">
+        <div class="Contenedor-Modulos">
+            <div class="modl">
+                <div class="in_mod">
+                    <h2>Crear Programación</h2>
+                    <a href="/Editp"><img src="{{url_for('static',filename='/image/Program/Crear.jpg')}}" alt=""></a>
+                    <h4 class="piepel" id="RPelicula1"> </h4>
+                </div>
+                <div class="in_mod">
+                    <h2>Modificar Programación</h2>
+                    <a href="/Editp"><img src="{{url_for('static',filename='/image/Program/Modificar.jpg')}}" alt=""></a>
+                    <h4 class="piepel" id="RPelicula2"></h4>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>

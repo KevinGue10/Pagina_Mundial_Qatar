@@ -1,0 +1,76 @@
+{% extends "model_prog.html" %}
+
+{% block formulario%}
+{% if P==1:%}
+<h4>Edicion de partidos </h4>
+<form action="" method="post" novalidate>
+{{form.hidden_tag()}}
+
+<p class="Formulario">
+    {{form.Estadio.label}}<br>
+    {{form.Estadio(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Equipo1.label}}<br>
+    {{form.Equipo1(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Equipo2.label}}<br>
+    {{form.Equipo2(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Arbitro.label}}<br>
+    {{form.Arbitro(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Fecha.label}}<br>
+    {{form.Fecha(size=40)}}<br>
+
+</p>
+
+<p class="buton">
+    {{form.ingb()}}
+</p>
+{% else:%}
+<h4>Programacion de partidos </h4>
+<form action="" method="post" novalidate>
+{{form.hidden_tag()}}
+
+<p class="Formulario">
+    {{form.Estadio.label}}<br>
+    {{form.Estadio(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Equipo1.label}}<br>
+    {{form.Equipo1(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Equipo2.label}}<br>
+    {{form.Equipo2(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Arbitro.label}}<br>
+    {{form.Arbitro(size=40)}}<br>
+
+</p>
+<p class="Formulario">
+    {{form.Fecha.label}}<br>
+    {{form.Fecha(size=40)}}<br>
+
+</p>
+
+<p class="buton">
+    {{form.ingb()}}
+</p>
+
+</form>
+{%endif%}
+{% endblock %}
+
