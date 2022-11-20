@@ -28,3 +28,10 @@ def Edit():
 
     return render_template('progc.html',form=form)
 
+@app.route('/config')
+def config():
+    return render_template('config.html')
+
+@app.route('/equipos')
+def equipos():
+    return render_template('equipos.html')

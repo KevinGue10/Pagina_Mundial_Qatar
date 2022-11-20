@@ -1,0 +1,167 @@
+/* Section */
+.section {
+   width: 100%;
+}
+.row {
+   padding: 80px 50px;
+}
+.section-title {
+   display: flex;
+   align-items: center;
+   height: calc(100vw * 300 / 1920);
+   background-image: url(https://i.ibb.co/PN33vZk/background-header.jpg);
+   background-position:center;
+   background-size: contain;
+   background-repeat: no-repeat;
+   padding: 0 50px;
+}
+.section-title h1 {
+   color: var(--light);
+   padding-bottom: 6px;
+   border-bottom: 2px solid var(--primary);
+}
+.row-welcome {
+   padding: 25px 80px;
+}
+.info-container {
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   column-gap: 40px;
+   width: 100%;
+   padding-top: 20px;
+}
+.row-welcome .info {
+   width: 45%;
+   font-size: var(--md);
+}
+.row-welcome .info h2 {
+   color: var(--secondary);
+   margin-bottom: 20px;
+}
+.row-welcome .info h3 {
+   color: var(--black);
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+.row-welcome .info p {
+   margin-bottom: 20px;
+   padding-left: 30px;
+}
+.row-welcome .info img {
+   width: 90%;
+   padding-left: 30px;
+}
+.row-welcome .info-container .img {
+   width: 55%;
+   border: solid 3px var(--dark);
+   border-radius: 20px;
+}
+
+/* Cards */
+.cards-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 45px;
+   width: 100%;
+   padding: 20px;
+   margin-top: 20px;
+
+}
+.card {
+   display: flex;
+   width: 380px;
+   min-height: 250px;
+   border-radius: 20px;
+   overflow: hidden;
+   box-shadow: 0 0 10px 3px var(--dark);
+}
+.card:hover {
+   transform: scale(1.02, 1.02);
+}
+.card img {
+   width: 130px;
+   min-height: 220px;
+   object-fit: cover;
+}
+.card .card-info {
+   display: flex;
+   flex-direction: column;
+   justify-content:space-evenly;
+   align-items: center;
+   padding: 0 10px;
+   padding: 10px;
+   background-color: bisque;
+}
+.card .card-info h3 {
+   padding: 0 10px;
+   border-bottom: 2px solid var(--primary);
+}
+
+.card .card-info h3 {
+   font-size: 26px;
+}
+.card .card-info .num-habitacion {
+   font-size: var(--lg);
+   font-family: var(--font2);
+   font-weight: bold;
+}
+.card .card-info .calificacion-container {
+   width: 75%;
+   padding: 5px 0;
+   border-radius: 10px;
+   margin-top: 8px;
+   background-color: var(--primary);
+   text-align: center;
+}
+.card .card-info .calificacion {
+   font-size: var(--md);
+   font-family: var(--font1);
+   color: var(--secondary);
+}
+.card .card-info .nota {
+   font-size: 30px;
+   font-family: var(--font2);
+   font-weight: bold;
+   color: var(--black);
+   line-height: 40px;
+}
+.card .card-info .estrellas {
+   margin-top: 8px;
+   color: var(--primary);
+}
+.card .card-info .info-reserva-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   margin-top: 20px;
+}
+.card .card-info .info-reserva-container .info-left {
+   width: 50%;
+}
+.card .card-info .info-reserva-container .info-left .estadia {
+   font-size: var(--md);
+   font-weight: bold;
+   color: var(--secondary);
+}
+.card .card-info .info-reserva-container .info-left .fechas {
+   margin-left: 15px;
+}
+.card .card-info .info-reserva-container .info-right {
+   width: 50%;
+}
+.card .card-info .info-reserva-container .info-right .item {
+   display: flex;
+   align-items: center;
+   padding-top: 5px;
+}
+.card .card-info .info-reserva-container .info-right .item .svg-icon {
+   color: var(--secondary)
+}
+.card .card-info .info-reserva-container .info-right .item p {
+   margin-left: 8px;
+   line-height: 20px;
+   color: var(--black);
+}
