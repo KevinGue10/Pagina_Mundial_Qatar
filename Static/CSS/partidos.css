@@ -1,0 +1,406 @@
+.square{
+    margin:auto;
+    width: 40%;
+    background:  rgb(52,4,28);
+    padding: 30px;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-family: 'calibri';
+    color: floralwhite;
+    box-shadow: 7px 13px 37px #000;
+    position: relative;  
+}
+
+.content{
+    display: flex;
+}
+
+.contentbig{
+    display: flex;
+    align-items: center;
+}
+
+.square-left{
+    width: 40%;
+    background:  rgb(52,4,28);
+    padding: 30px;
+    margin-top: 50px;
+    margin-left: 5%;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: floralwhite;
+    box-shadow: 7px 13px 37px #000;
+    position: relative;  
+}
+
+.square-right   {
+    width: 40%;
+    background:  rgb(52,4,28);
+    padding: 30px;
+    margin-top: 50px;
+    margin-left: 20%;
+    margin-right: 5%;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: floralwhite;
+    box-shadow: 7px 13px 37px #000;
+    position: relative;  
+}
+
+.fecha {
+    color: #ebe4e3;
+    font-size: 20px;
+    margin-left: 2px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.minuto {
+    color: #ebe4e3;
+    font-size: 20px;
+    margin-left: 2px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.informacion {
+    color: #ebe4e3;
+    font-size: 30px;
+    margin-left: 2px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.font {
+    color: #ebe4e3;
+    font-size: 40px;
+    margin-left: 2px;
+    font-weight: bold;
+    text-align: center;
+}
+
+:root {
+    --azul: #000668;
+    --fondo: #1a090c;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(rgba(10, 10, 20, 0.808)30%, rgba(10, 10, 20, .50)50%), url(../image/Program/Fondo.png);
+    font-family: 'Open Sans', sans-serif;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.content{
+
+    display: flex;
+
+}
+
+.contenedor {
+    width: 95%;
+    margin: auto
+}
+
+header {
+    padding: 5px 0;
+    background-color: rgb(52,4,28);
+}
+.contenedor img{
+    width: 10%;
+    margin-left: 3px;
+}
+
+header .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    color: #ebe4e3;
+    font-size: 40px;
+    margin-left: 2px;
+    font-weight: bold;
+    text-align: center;
+}
+
+header nav a {
+    color: #ebe4e3;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+
+}
+
+header nav a:hover,
+header nav a.activo {
+    color: #ECAB00;
+}
+
+/*-------- submenu ajustes------*/
+ul, ol { list-style: none;}
+li, ol{ list-style: none;}
+.nav li ul {
+display: none;
+position: absolute;
+min-width: 140px;
+}
+nav li:hover > ul {
+    display: block;
+}
+
+.pagprin{
+    display: flex;
+}
+.controls {
+    width: 100%;
+    background: #ebe4e3;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 1%;
+    margin-bottom: 16px;
+    border: 1px solid #E7E7F6;
+    font-family: 'calibri';
+    font-size: 18px;
+
+}
+.info .botons {
+    width: 100%;
+    background: #E7E7F6;
+    border: none;
+    padding: 12px;
+    color: #000668;
+    margin: 16px;
+    font-size: 16px;
+}
+.info .botons:hover{
+    background: #ECAB00;
+    color: #000668;
+
+}
+#nmov{
+    padding: 10px 60px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    font-display: left;
+    background: #ECAB00;
+    color: #000668;
+}
+.info h4 {
+    margin: 0;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid;
+    font-size: 20px;
+}
+.FormularioT{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    color: #ECAB00;
+}
+.Formulario{
+    font-size: 22px;
+    font-weight: bold;
+}
+.Formulario input{ 
+    width: 100%;
+    background-color: rgba(41, 41, 121, 0.432);
+    padding: 10px;
+    border-radius: 14px;
+    margin-top: 1%;
+    margin-bottom: 16px;
+    border: 1px solid #E7E7F6;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: floralwhite;
+}
+
+.buton input{
+    width: 100%;
+    background:  #E7E7F6;
+    border: none;
+    padding: 12px;
+    color: #523c07;
+    margin: 16px;
+    font-size: 20px;
+    font-weight: bold;
+} 
+
+.quantity {
+    position: relative;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button
+  {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=number]
+  {
+    -moz-appearance: textfield;
+  }
+  
+  .quantity input {
+    width: 45px;
+    height: 42px;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    padding: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .quantity input:focus {
+    outline: 0;
+  }
+  
+  .quantity-nav {
+    float: left;
+    position: relative;
+    height: 42px;
+  }
+  
+  .quantity-button {
+    position: relative;
+    cursor: pointer;
+    border-left: 0px solid #eee;
+    width: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 13px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    line-height: 1.7;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+  
+  .quantity-button.quantity-up {
+    position: absolute;
+    height: 50%;
+    top: 0;
+    border-bottom: 0px solid #eee;
+  }
+  
+  .quantity-button.quantity-down {
+    position: absolute;
+    bottom: -1px;
+    height: 50%;
+  }
+
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.button {
+    color: floralwhite;
+    box-shadow: 7px 13px 37px #000;
+    position: relative; 
+    background-color: #34041C;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left: 90.5%;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.button:hover{
+    filter: contrast(1.2) saturate(1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    background-color: #ebe4e3;
+    color:#000;
+}
+
+.button:active{
+    transform: translateY(4px);
+}

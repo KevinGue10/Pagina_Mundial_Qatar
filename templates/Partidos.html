@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='CSS/partidos.css')}}">
+    <title>Programacion</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion">Programación</a>
+                <a href="/Partidos" class="activo">Partidos on-line</a>
+            </nav>
+        </div>
+    </header>
+
+        <section class="square">
+
+            <h1 class="font">"vs" </h1>
+            <h3 class="fecha">"Fecha-Hora" </h3>
+
+        </section>
+
+    <div class="contentbig">
+        
+        <div class="square-left">
+
+            <h1 class="informacion">Información </h1>
+
+            <h1 class="minuto">Minuto: </h1>
+
+            <div class="content">  
+
+                <div class="quantity">
+                    <input id="minuto" type="number" min="0" max="125" value="0">
+                </div>
+                <h1> : </h1>
+                <div class="quantity">
+                    <input id="segundo" type="number" min="0" max="60" value="0">
+                </div>
+
+            </div>   
+            
+            <h1 class="minuto">Descripción: </h1>
+            <input type="text" id="titulo" class="controls" placeholder="Ingrese la descripción">
+
+        </div>
+
+        <div>
+
+            <input type="button" class="button" value="Input Button">
+
+        </div>
+
+        <div class="square-right">
+
+            <h1 class="informacion">Eventos especiales </h1>
+
+            <label class="container">Tarjetas Amarillas
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Tarjetas Amarillas
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Tiros de esquina
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Goles
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Fin de juego
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            
+        </div>
+
+    </div>
+
+    <div class="contentbig">
+
+        <se
+
+
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{url_for('static', filename='minute.js')}}"></script>
+
+
+
+</html>

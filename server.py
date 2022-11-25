@@ -28,3 +28,6 @@ def Edit():
 
     return render_template('progc.html',form=form)
 
+@app.route('/Partidos')
+def partidos():
+    return render_template('Partidos.html')
