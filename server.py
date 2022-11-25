@@ -3,7 +3,7 @@ import os
 from flask_mysqldb import MySQL
 from froms import FormProg
 from db import connect
-
+from Datos import estd,equipos,arb
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -27,14 +27,22 @@ def program():
 
 @app.route('/Editp')
 def Edit():
-    cursor = mysql.connection.cursor()
+    cur= mysql.connection.cursor()
     form=FormProg()
+    est=estd(cur)
+    equ=equipos(cur)
+    arbi=arb(cur)
+    for i in range (len(est)):
+        form.Estadio.choices.append(est[i])
+    for i in range (len(equ)):
+        form.Equipo1.choices.append(equ[i])
+        form.Equipo2.choices.append(equ[i])
     if (form.validate_on_submit()):
         Estadio=request.form['Estadio']
         Equipo1=request.form[' Equipo1']
         Equipo2=request.form['Equipo2']
         Arbitro=request.form['Arbitro']
         Fecha=request.form['Fecha']
-        query="Insert into Pagina_Mundial.Programacion (Estadio_prog,Partido,Fecha-Hora,Arbitro) VALUES "
+        query="Insert INTO Pagina_Mundial.Programacion (Estadio_prog,Partido,Fecha-Hora,Arbitro) VALUES ('') "
     return render_template('progc.html',form=form)
 
