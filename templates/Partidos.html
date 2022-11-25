@@ -58,17 +58,7 @@
             <h1 class="minuto">Descripción: </h1>
             <input type="text" id="titulo" class="controls" placeholder="Ingrese la descripción">
 
-        </div>
-
-        <div>
-
-            <input type="button" class="button" value="Input Button">
-
-        </div>
-
-        <div class="square-right">
-
-            <h1 class="informacion">Eventos especiales </h1>
+            <h1 class="informacione">Eventos especiales: </h1>
 
             <label class="container">Tarjetas Amarillas
                 <input type="checkbox">
@@ -90,16 +80,19 @@
                 <input type="checkbox">
                 <span class="checkmark"></span>
               </label>
-            
+
+            <div>
+
+                <input type="button" class="button" value="Guardar">
+
+            </div>
+
         </div>
 
-    </div>
 
-    <div class="contentbig">
 
-        <div class="squarelast">
-
-            <h1 class="informacion">Estadisticas </h1>
+        <div class="square-right">
+            <h1 class="informacion">Estadísticas </h1>
 
             <div class="contentbig">
                 <img src="https://i.ibb.co/Nmwy8qG/catar.png" id="escudo2" alt="catar">
@@ -107,30 +100,71 @@
                 <img src="https://i.ibb.co/zfhR8JQ/pbajos.png" id="escudo2" alt="pbajos">
             </div>
 
-            <div class="content">
-                
+            <div class="contentstat">
+
+                <div class="stepper-input">  
+                    <button class="btn btn-left" id="decrement" onclick="stepper(this)"> - </button>
+                    <input class="input-box" type="number" min="0" max="100" step="1" value="0" id="my-input"  readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper(this)"> + </button>
+                </div>
+                <h1 class="fontstats">Goles</h1>
                 <div class="stepper-input">
-                    <button class="btn btn-left">-</button>
-                    <input type="text" placeholder="Number of bugs" value="30" class="input-box"/>
-                    <button class="btn btn-right">+</button>
-                 </div>
+                    <button class="btn btn-left" id="decrement" onclick="stepper1(this)"> - </button>
+                    <input class="input-box" type="number" min="0" max="100" step="1" value="0" id="my-input1"  readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper1(this)"> + </button>
+                </div>
 
             </div>
 
-            <div>
+            <div class="contentstat">
+                <div class="stepper-input">  
+                    <button class="btn btn-left" id="decrement" onclick="stepper2(this)"> - </button>
+                    <input class="input-box" id="my-input2" type="number" min="0" max="100" step="1" value="0"   readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper2(this)"> + </button>
+                </div>
+                <h1 class="fontstats">Remates</h1>
+                <div class="stepper-input">
+                    <button class="btn btn-left" id="decrement" onclick="stepper3(this)"> - </button>
+                    <input class="input-box" id="my-input3" type="number" min="0" max="100" step="1" value="0" readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper3(this)"> + </button>
+                </div>
                 
             </div>
 
-            <div>
-                
+            <div class="contentstat">
+                <div class="stepper-input">  
+                    <button class="btn btn-left" id="decrement" onclick="stepper4(this)"> - </button>
+                    <input class="input-box" id="my-input4" type="number" min="0" max="100" step="1" value="0"   readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper4(this)"> + </button>
+                </div>
+                <h1 class="fontstats">Fuera de juego</h1>
+                <div class="stepper-input">
+                    <button class="btn btn-left" id="decrement" onclick="stepper5(this)"> - </button>
+                    <input class="input-box" id="my-input5" type="number" min="0" max="100" step="1" value="0" readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper5(this)"> + </button>
+                </div>
             </div>
 
-            <div>
-                
+            <div class="contentstat">
+                <div class="stepper-input">  
+                    <button class="btn btn-left" id="decrement" onclick="stepper6(this)"> - </button>
+                    <input class="input-box" id="my-input6" type="number" min="0" max="100" step="1" value="0"   readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper6(this)"> + </button>
+                </div>
+                <h1 class="fontstats">Tiros de esquina</h1>
+                <div class="stepper-input">
+                    <button class="btn btn-left" id="decrement" onclick="stepper7(this)"> - </button>
+                    <input class="input-box" id="my-input7" type="number" min="0" max="100" step="1" value="0" readonly>
+                    <button class="btn btn-right" id="increment" onclick="stepper7(this)"> + </button>
+                </div>               
             </div>
 
-        </div>
+            <div> <h6 class="fonte"> Las estadísticas se guardan al final del partido.</h6> </div>
+
     </div>
+
+
+    
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="{{url_for('static', filename='botones.js')}}"></script>

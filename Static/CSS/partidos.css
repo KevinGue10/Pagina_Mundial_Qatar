@@ -1,15 +1,26 @@
 .square{
     margin:auto;
     width: 40%;
-    background:  rgb(52,4,28);
     padding: 30px;
     text-align: center;
     border-radius: 4px;
     margin-top: 10px;
     font-family: 'calibri';
     color: floralwhite;
-    box-shadow: 7px 13px 37px #000;
     position: relative;  
+}
+
+.stats{
+  display: flex;
+  width: 10%;
+  background: white;
+  padding: 10px;
+  margin-top: 50px;
+  margin-left: 5%;
+  border-radius: 4px;
+  font-family: 'calibri';
+  box-shadow: 7px 13px 37px #000;
+  position: relative;  
 }
 
 .squarelast{
@@ -39,16 +50,33 @@
 }
 
 #escudo2{
-
-    margin: auto;
-    width: 70px;
-    height: auto;
-
+  margin: auto;
+  width: 70px;
+  height: auto;
 }
 
 .contentbig{
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.contentstat{
+
+  display: flex;
+  align-items: center;
+  margin-top: 8%;
+  margin-left: 15%;
+  margin-right: 15%;
+
+}
+
+.fontstats{
+
+  color: #ebe4e3;
+  font-size: 18px;
+  margin: auto;
+  font-weight: bold;
+  text-align: center;
 }
 
 .square-left{
@@ -97,12 +125,21 @@
 
 .informacion {
     color: #ebe4e3;
-    font-size: 30px;
+    font-size: 35px;
     margin-left: 2px;
     margin-bottom: 20px;
     font-weight: bold;
     text-align: center;
 }
+
+.informacione {
+  color: #ebe4e3;
+  font-size: 25px;
+  margin-left: 2px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 
 .font {
     margin: auto;
@@ -110,6 +147,10 @@
     font-size: 40px;
     font-weight: bold;
     text-align: center;
+}
+
+.fonte {
+  margin-top: 5%;
 }
 
 :root {
@@ -125,7 +166,7 @@
 }
 
 body {
-    background: linear-gradient(rgba(10, 10, 20, 0.808)30%, rgba(10, 10, 20, .50)50%), url(../image/Program/Fondo.png);
+    background: linear-gradient(rgba(10, 10, 20, 0.808)30%, rgba(10, 10, 20, .50)50%), url(../image/Partidos/fondo1.jpg);
     font-family: 'Open Sans', sans-serif;
     background-position: center;
     background-size: 100%;
@@ -277,7 +318,7 @@ nav li:hover > ul {
   input[type="number"]{
     -moz-appearance: textfield;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     border: none;
     background-color: #ffffff;
     color: #202030;
@@ -347,12 +388,11 @@ input::-webkit-inner-spin-button{
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-size: 20px;
+    font-size: 17px;
   }
   
   /* Hide the browser's default checkbox */
@@ -381,7 +421,7 @@ input::-webkit-inner-spin-button{
   
   /* When the checkbox is checked, add a blue background */
   .container input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #04341c;
   }
   
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -411,9 +451,9 @@ input::-webkit-inner-spin-button{
 
 .button {
     color: floralwhite;
-    box-shadow: 7px 13px 37px #000;
+    box-shadow: 2px 3.5px 9.5px #000;
     position: relative; 
-    background-color: #34041C;
+    background-color: #04341c;
     border: none;
     padding: 15px 32px;
     text-align: center;
@@ -422,37 +462,19 @@ input::-webkit-inner-spin-button{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    margin-left: 90.5%;
+    margin-top: 5%;
     font-weight: bold;
     border-radius: 4px;
 }
 
-.button:hover{
-    filter: contrast(1.2) saturate(1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-    background-color: #ebe4e3;
-    color:#000;
-}
-
 .button:active{
-    transform: translateY(4px);
+  top: 2px;
 }
 
-.handle-counter { overflow: hidden; }
-
-.handle-counter .counter-minus,  .handle-counter .counter-plus,  .handle-counter input {
-  float: left;
-  text-align: center;
-}
-
-.handle-counter .counter-minus,  .handle-counter .counter-plus { text-align: center; }
-
-.handle-counter input {
-  width: 50px;
-  border-width: 1px;
-  border-left: none;
-  border-right: none;
+.button:hover{
+  background-color: #ccc;
+  color: #04341c;
+  
 }
 
 .btn {
@@ -466,26 +488,25 @@ input::-webkit-inner-spin-button{
   cursor: not-allowed;
 }
 
-.btn-primary { background-color: #009dda; }
-
-.btn-primary:hover, .btn-primary:focus { background-color: #0486b9; }
-
 .stepper-input{ 
   display: flex;
-  font-size: 1.5em;
+  font-size: 3em;
   justify-content: center;
-  padding: 50px;
+  width: 1%;
+  height: auto;
 }   
 .btn{
   cursor: pointer;
-  padding: 1em;
   color: #fff;
-  background-color: #121212;
-  border: 1px solid #121212;
+  background-color: #04341c;
+  border: 1px solid #04341c;
+  width: 30px;
+  height: 26px;
+  text-align: center;
 }
 .btn:hover{
   background-color: #fff;
-  color: #121212;
+  color: #04341c;
 }
 .btn-left{   
   border-radius: 10px 0 0 10px;
@@ -494,6 +515,8 @@ input::-webkit-inner-spin-button{
   border-radius: 0 10px 10px 0 ;
 }
 .input-box{ 
-  border: 1px solid #121212;
+  border: 1px solid #04341c;
   text-align: center;
+  width: 30px;
+  height: 26px;
 }
