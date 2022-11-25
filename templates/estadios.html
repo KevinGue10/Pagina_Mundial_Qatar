@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/inicial.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/config.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/equipos.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Mundial Qatar 2022</title>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+           
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion">Programación</a>
+                <a href="/Inises">Partidos on-line</a>
+                <a href="/config" class="activo">Configuración</a>
+        
+
+            </nav>
+        </div>
+    </header>
+    
+    <section class="section btn-secondary">
+      <div class="row">
+      <h1 id="titulo">Estadios</h1>
+        <table class="redTable">
+          <thead>
+          <tr>
+          <th>Nombre</th>
+          <th>Capacidad</th>
+          <th>Ubicación</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>Ahmad bin ali</td>
+          <td>40000</td>
+          <td>Doha</td>
+          </tr>
+          <tr>
+          <td>Al bayt</td>
+          <td>60000</td>
+          <td>Doha</td>
+          </tr>
+          <tr>
+          <td>Khalifa</td>
+          <td>40000</td>
+          <td>Doha</td>
+          </tr>
+          <tr>
+          <td>Lusail</td>
+          <td>80000</td>
+          <td>Lusail</td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+          <a href="/editestadios"><button class="button_delete"id="edit_arbitro">Editar estadios</button></a>
+          </section>
+</body>
+
+</html>

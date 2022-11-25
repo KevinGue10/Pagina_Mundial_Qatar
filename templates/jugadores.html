@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/inicial.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/config.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/equipos.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Mundial Qatar 2022</title>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+           
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion">Programación</a>
+                <a href="/Inises">Partidos on-line</a>
+                <a href="/config" class="activo">Configuración</a>
+        
+
+            </nav>
+        </div>
+    </header>
+    
+    <section class="section btn-secondary">
+      <div class="row">
+      <h1 id="titulo">Jugadores</h1>
+        <table class="redTable">
+          <thead>
+          <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Número</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>Meshaal</td>
+          <td>Barsham</td>
+          <td>22</td>
+          </tr>
+          <tr>
+          <td>Saad</td>
+          <td>Al-Sheeb</td>
+          <td>1</td>
+          </tr>
+          <tr>
+          <td>Bassam</td>
+          <td>Al-Rawi</td>
+          <td>15</td>
+          </tr>
+          <tr>
+          <td>Tarek</td>
+          <td>Salman</td>
+          <td>5</td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+          </section>
+</body>
+
+</html>

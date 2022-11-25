@@ -1,0 +1,295 @@
+/* Section */
+.section {
+   width: 100%;
+}
+.row {
+   padding: 80px 50px;
+}
+.section-title {
+   display: flex;
+   align-items: center;
+   height: calc(100vw * 300 / 1920);
+   background-image: url(https://i.ibb.co/PN33vZk/background-header.jpg);
+   background-position:center;
+   background-size: contain;
+   background-repeat: no-repeat;
+   padding: 0 50px;
+}
+.section-title h1 {
+   color: var(--light);
+   padding-bottom: 6px;
+   border-bottom: 2px solid var(--primary);
+}
+.row-welcome {
+   padding: 25px 80px;
+}
+.info-container {
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   column-gap: 40px;
+   width: 100%;
+   padding-top: 20px;
+}
+.row-welcome .info {
+   width: 45%;
+   font-size: var(--md);
+}
+.row-welcome .info h2 {
+   color: var(--secondary);
+   margin-bottom: 20px;
+}
+.row-welcome .info h3 {
+   color: var(--black);
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+.row-welcome .info p {
+   margin-bottom: 20px;
+   padding-left: 30px;
+}
+.row-welcome .info img {
+   width: 90%;
+   padding-left: 30px;
+}
+.row-welcome .info-container .img {
+   width: 55%;
+   border: solid 3px var(--dark);
+   border-radius: 20px;
+}
+
+/* Cards */
+.cards-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 45px;
+   width: 100%;
+   padding: 20px;
+   margin-top: 20px;
+
+}
+.card {
+   display: flex;
+   width: 380px;
+   min-height: 250px;
+   border-radius: 20px;
+   overflow: hidden;
+   box-shadow: 0 0 10px 3px var(--dark);
+}
+.card:hover {
+   transform: scale(1.02, 1.02);
+}
+.card img {
+   width: 130px;
+   min-height: 220px;
+   object-fit: cover;
+}
+.card .card-info {
+   display: flex;
+   flex-direction: column;
+   justify-content:space-evenly;
+   align-items: center;
+   padding: 0 10px;
+   padding: 10px;
+   background-color: bisque;
+}
+.card .card-info h3 {
+   padding: 0 10px;
+   border-bottom: 2px solid var(--primary);
+}
+
+.card .card-info h3 {
+   font-size: 26px;
+}
+.card .card-info .num-habitacion {
+   font-size: var(--lg);
+   font-family: var(--font2);
+   font-weight: bold;
+}
+.card .card-info .calificacion-container {
+   width: 75%;
+   padding: 5px 0;
+   border-radius: 10px;
+   margin-top: 8px;
+   background-color: var(--primary);
+   text-align: center;
+}
+.card .card-info .calificacion {
+   font-size: var(--md);
+   font-family: var(--font1);
+   color: var(--secondary);
+}
+.card .card-info .nota {
+   font-size: 30px;
+   font-family: var(--font2);
+   font-weight: bold;
+   color: var(--black);
+   line-height: 40px;
+}
+.card .card-info .estrellas {
+   margin-top: 8px;
+   color: var(--primary);
+}
+.card .card-info .info-reserva-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   margin-top: 20px;
+}
+.card .card-info .info-reserva-container .info-left {
+   width: 50%;
+}
+.card .card-info .info-reserva-container .info-left .estadia {
+   font-size: var(--md);
+   font-weight: bold;
+   color: var(--secondary);
+}
+.card .card-info .info-reserva-container .info-left .fechas {
+   margin-left: 15px;
+}
+.card .card-info .info-reserva-container .info-right {
+   width: 50%;
+}
+.card .card-info .info-reserva-container .info-right .item {
+   display: flex;
+   align-items: center;
+   padding-top: 5px;
+}
+.card .card-info .info-reserva-container .info-right .item .svg-icon {
+   color: var(--secondary)
+}
+.card .card-info .info-reserva-container .info-right .item p {
+   margin-left: 8px;
+   line-height: 20px;
+   color: var(--black);
+}
+
+
+/* Style The Dropdown Button */
+.dropbtn {
+   background-color:#34041C;
+   color: white;
+   padding: 16px;
+   font-size: 16px;
+   border: none;
+   cursor: pointer;
+   border-radius: 15px;
+ }
+ 
+ /* The container <div> - needed to position the dropdown content */
+ .dropdown {
+   position: relative;
+   display: inline-block;
+   margin-bottom: 20px;
+ }
+ 
+ /* Dropdown Content (Hidden by Default) */
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: #f9f9f9;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+ }
+ 
+ /* Links inside the dropdown */
+ .dropdown-content a {
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+ }
+ 
+ /* Change color of dropdown links on hover */
+ .dropdown-content a:hover {background-color: #f1f1f1}
+ 
+ /* Show the dropdown menu on hover */
+ .dropdown:hover .dropdown-content {
+   display: block;
+ }
+ 
+ /* Change the background color of the dropdown button when the dropdown content is shown */
+ .dropdown:hover .dropbtn {
+   background-color:rgb(85, 28, 56);
+ }
+.table{
+   margin-top: 20px;
+}
+ table.redTable {
+   border: 2px solid #34041C;
+   background-color: #EEE7DB;
+   width: 100%;
+   text-align: center;
+   border-collapse: collapse;
+
+ }
+ table.redTable td, table.redTable th {
+   border: 1px solid #AAAAAA;
+   padding: 3px 2px;
+ }
+ table.redTable tbody td {
+   font-size: 13px;
+   
+ }
+ table.redTable tr:nth-child(even) {
+   background: #F5C8BF;
+ }
+ table.redTable thead {
+   background: #34041C;
+ }
+ table.redTable thead th {
+   font-size: 19px;
+   font-weight: bold;
+   color: #FFFFFF;
+   text-align: center;
+   border-left: 2px solid #444444;
+ }
+ table.redTable thead th:first-child {
+   border-left: none;
+ }
+ 
+ table.redTable tfoot td {
+   font-size: 13px;
+ }
+
+ input { 
+   text-align: center; 
+   font-family: 'Open Sans', sans-serif;
+}
+
+.button_delete {
+   border-radius: 15px;
+   background-color:  #34041C; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  font-size: 16px;
+  margin: auto;
+  margin-bottom: 10px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.button_delete:hover{
+   background-color: #551C38;
+}
+
+.button_delete:active{
+   filter: contrast(1.2) saturate(1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#titulo{
+   display: flex;
+   justify-content: left;
+   margin:auto;
+   margin-bottom: 15px;
+   color:#f9f9f9;
+}

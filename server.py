@@ -59,3 +59,39 @@ def Edit():
             mysql.connection.commit()
     return render_template('progc.html',form=form,msg=msg)
 
+@app.route('/config')
+def config():
+    return render_template('config.html')
+
+@app.route('/equipos')
+def equipos():
+    return render_template('equipos.html')
+
+@app.route('/jugadores')
+def jugadores():
+    return render_template('jugadores.html')
+
+
+@app.route('/editequipos')
+def edit_equipos():
+    return render_template('edit_equipos.html')
+
+@app.route('/editjugadores')
+def edit_jugadores():
+    return render_template('edit_jugadores.html')
+
+@app.route('/arbitros')
+def arbitros():
+    return render_template('arbitros.html')
+
+@app.route('/editarbitros')
+def edit_arbitros():
+    return render_template('edit_arbitros.html')
+
+@app.route('/estadios')
+def estadios():
+    return render_template('estadios.html')
+
+@app.route('/editestadios')
+def edit_estadios():
+    return render_template('edit_estadios.html')
