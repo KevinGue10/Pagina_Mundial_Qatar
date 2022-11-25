@@ -35,3 +35,7 @@ def config():
 @app.route('/equipos')
 def equipos():
     return render_template('equipos.html')
+
+@app.route('/jugadores')
+def jugadores():
+    return render_template('jugadores.html')
