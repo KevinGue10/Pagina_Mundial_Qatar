@@ -2,7 +2,6 @@ from flask import Flask,render_template,redirect,request,url_for, session,flash
 import os
 from flask_mysqldb import MySQL
 from froms import FormProg
-from db import connect
 from Datos import estd,equipos,arb
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
