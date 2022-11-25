@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='./CSS/inicial.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='./CSS/config.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/equipos.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
 
     <title>Mundial Qatar 2022</title>
@@ -23,12 +24,46 @@
                 <a href="/Programacion">Programación</a>
                 <a href="/Inises">Partidos on-line</a>
                 <a href="/config" class="activo">Configuración</a>
+        
+
             </nav>
         </div>
     </header>
 
-    
-        <div class="Contenedor-princpipal">
+    <section class="section btn-secondary">
+        <div class="row">
+            <h1 id="titulo">Árbitros</h1>
+          <table class="redTable">
+            <thead>
+            <tr>
+            <th>Nombre</th>
+            <th>Procedencia</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>Fernando Rapallini</td>
+            <td>Argentina</td>
+            </tr>
+            <tr>
+            <td>Stephanie Frappart</td>
+            <td>Francia</td>
+            </tr>
+            <tr>
+            <td>Cesar Ramos</td>
+            <td>México</td>
+            </tr>
+            <tr>
+            <td>Wilmar Roldan</td>
+            <td>Colombia</td>
+            </tr>
+            </tbody>
+        </table>
+            </div>
+            <a href="/editarbitros"><button class="button_delete"id="edit_arbitro">Editar árbitros</button></a>
+            </section>
+
+        <!-- <div class="Contenedor-princpipal">
             <div class="Contenedor-Modulos">
                 <div class="modl">
                     <div class="in_mod">
@@ -37,15 +72,14 @@
                     </div>
                     <div class="in_mod">
                         <h2>Árbitros</h2>
-                        <a href="/arbitros"><img src="{{url_for('static',filename='/image/config/arbitro.jpg')}}" alt=""></a>
+                        <a href="/Editp"><img src="{{url_for('static',filename='/image/config/arbitro.jpg')}}" alt=""></a>
                     </div>
                     <div class="in_mod">
                         <h2>Estadios</h2>
-                        <a href="/estadios"><img src="{{url_for('static',filename='/image/config/estadios.jpg')}}" alt=""></a>
+                        <a href="/Editp"><img src="{{url_for('static',filename='/image/config/estadios.jpg')}}" alt=""></a>
                     </div>
                 </div>
-            </div>
-    
+            </div> -->
 </body>
 
 </html>
