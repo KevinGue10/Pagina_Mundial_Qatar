@@ -2,7 +2,7 @@ from flask import Flask,render_template,redirect,request,url_for, session,flash
 import os
 from flask_mysqldb import MySQL
 from froms import FormProg
-from Datos import estd,equipos,arb
+from Datos import estd,equipos,arb,ids,validate
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -17,6 +17,7 @@ mysql= MySQL(app)
 @app.route("/index")
 @app.route('/')
 def index():
+    flash("FUNCIONA")
     return render_template('Pagina_inicial.html')
 
 
@@ -24,7 +25,7 @@ def index():
 def program():
     return render_template('program.html')
 
-@app.route('/Editp')
+@app.route('/Editp', methods=['GET','POST'])
 def Edit():
     cur= mysql.connection.cursor()
     form=FormProg()
@@ -36,15 +37,16 @@ def Edit():
     for i in range (len(equ)):
         form.Equipo1.choices.append(equ[i])
         form.Equipo2.choices.append(equ[i])
+    for i in range (len(arbi)):
+        form.Arbitro.choices.append(arbi[i])
+    msg=''
+    print(form.validate_on_submit())
     if (form.validate_on_submit()):
         Estadio=request.form['Estadio']
-        Equipo1=request.form[' Equipo1']
+        Equipo1=request.form['Equipo1']
         Equipo2=request.form['Equipo2']
         Arbitro=request.form['Arbitro']
         Fecha=request.form['Fecha']
         query="Insert INTO Pagina_Mundial.Programacion (Estadio_prog,Partido,Fecha-Hora,Arbitro) VALUES ('') "
     return render_template('progc.html',form=form)
 
-@app.route('/Partidos')
-def partidos():
-    return render_template('Partidos.html')

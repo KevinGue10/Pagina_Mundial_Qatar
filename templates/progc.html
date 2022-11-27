@@ -3,6 +3,7 @@
 {% block formulario%}
 {% if P==1:%}
 <h4>Edicion de partidos </h4>
+
 <form action="" method="post" novalidate>
 {{form.hidden_tag()}}
 
@@ -35,6 +36,7 @@
 <p class="buton">
     {{form.ingb()}}
 </p>
+</form>
 {% else:%}
 <h4>Programacion de partidos </h4>
 <form action="" method="post" novalidate>
@@ -61,7 +63,7 @@
 
 </p>
 <p class="Formulario">
-    {{form.Fecha.label}}<br>
+    {{form.Fecha.label}} YYYY-MM-DD hh:mm:ss<br>
     {{form.Fecha}}<br>
 
 </p>
@@ -71,6 +73,7 @@
 </p>
 
 </form>
+<h2>{{msg}}</h2>
 {%endif%}
 {% endblock %}
 
