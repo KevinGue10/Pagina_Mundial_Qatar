@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/inicial.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/config.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/equipos.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <title>Mundial Qatar 2022</title>
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+           
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion">Programación</a>
+                <a href="/Inises">Partidos on-line</a>
+                <a href="/config" class="activo">Configuración</a>
+        
+
+            </nav>
+        </div>
+    </header>
+
+    <section class="section btn-secondary">
+        <div class="row">
+        <h1 id="titulo">Jugadores</h1>
+          <table class="redTable">
+            <thead>
+            <tr>
+            <th>Seleccionar</th>
+            <th>Nombre</th>
+            <th>Procedencia</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><input type="checkbox" id="delete_ref1"></td>
+            <td><input type="text" value="Fernando Rapallini"></td>
+            <td><input type="text" value="Argentina"></td>
+            </tr>
+            <tr>
+            <td><input type="checkbox" id="delete_ref2"></td>
+            <td><input type="text" value="Stephanie Frappart"></td>
+            <td><input type="text" value="Francia"></td>
+            </tr>
+            <tr>
+            <td><input type="checkbox" id="delete_ref3"></td>
+            <td><input type="text" value="Cesar Ramos"></td>
+            <td><input type="text" value="México"></td>
+            </tr>
+            <tr>
+            <td><input type="checkbox" id="delete_ref4"></td>
+            <td><input type="text" value="Wilmar Roldan"></td>
+            <td><input type="text" value="Colombia"></td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            <div>
+               <button class="button_delete"id="delete_arbitro">Eliminar seleccionados</button>
+               <button class="button_delete" id="save_changes_arbitro">Guardar cambios</button>
+            </div> 
+            </section>
+
+        <!-- <div class="Contenedor-princpipal">
+            <div class="Contenedor-Modulos">
+                <div class="modl">
+                    <div class="in_mod">
+                        <h2>Datos de Equipos de Fútbol</h2>
+                        <a href="/equipos"><img src="{{url_for('static',filename='/image/config/equipos.png')}}" alt=""></a>
+                    </div>
+                    <div class="in_mod">
+                        <h2>Árbitros</h2>
+                        <a href="/Editp"><img src="{{url_for('static',filename='/image/config/arbitro.jpg')}}" alt=""></a>
+                    </div>
+                    <div class="in_mod">
+                        <h2>Estadios</h2>
+                        <a href="/Editp"><img src="{{url_for('static',filename='/image/config/estadios.jpg')}}" alt=""></a>
+                    </div>
+                </div>
+            </div> -->
+</body>
+
+</html>
