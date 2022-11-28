@@ -152,6 +152,18 @@ nav li:hover > ul {
     font-size: 18px;
     color: floralwhite;
 }
+.Formulario select{ 
+    width: 100%;
+    background-color: rgba(41, 41, 121, 0.432);
+    padding: 10px;
+    border-radius: 14px;
+    margin-top: 1%;
+    margin-bottom: 16px;
+    border: 1px solid #E7E7F6;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: floralwhite;
+}
 
 .buton input{
     width: 100%;
