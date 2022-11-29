@@ -10,8 +10,6 @@ class FormProg(FlaskForm):
     Arbitro=SelectField('Arbitro',choices=[])
     Fecha=DateTimeField('Fecha_Hora',validators=[DataRequired(message='llene este campo')])
     ingb=SubmitField('Ingresar')
-    
-    
 
 class modprog(FlaskForm):
     Partido=SelectField('Partido',choices=[])
