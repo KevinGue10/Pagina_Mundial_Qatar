@@ -45,6 +45,7 @@ def ids(db,Estadio,E1,E2,Ar):
     info=[Est[0],Eq1[0],Eq2[0],arb[0],idp[0]]
     return info
    
+
 def validate(db,ida,E1,E2):
     db.execute("Select Procedencia FROM Pagina_Mundial.Arbitros where idarb= "+str(ida))
     parb=db.fetchone()
@@ -53,3 +54,28 @@ def validate(db,ida,E1,E2):
         return 1
     else:
         return 0
+
+def maxid(db):
+    db.execute("SELECT max(idProgramacion) FROM Pagina_Mundial.Programacion")
+    mid=db.fetchone()
+    return mid[0]
+
+def maxequ(db):
+    db.execute("SELECT max(idEquipos_Futbol) FROM Pagina_Mundial.Equipos_Futbol")
+    mid=db.fetchone()
+    return mid[0]
+    
+def edits(db,partido):
+    db.execute("SELECT e.Nombre_est FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Estadios e Where p.idEstadio_prog=e.idEstadios AND p.idProgramacion="+partido)
+    dt=db.fetchone()
+    db.execute("SELECT e.Nombre_Equipo FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Equipos_Futbol e Where p.id_local=e.idEquipos_Futbol AND p.idProgramacion="+partido)
+    dt1=db.fetchone()
+    db.execute("SELECT e.Nombre_Equipo FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Equipos_Futbol e Where p.id_local=e.idEquipos_Futbol AND p.idProgramacion="+partido)
+    dt2=db.fetchone()
+    db.execute("SELECT Fecha FROM Pagina_Mundial.Programacion  Where  idProgramacion="+partido)
+    dt3=db.fetchone()
+    db.execute("SELECT a.Nombre_arb FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Arbitros a Where p.Arbitro=a.idarb AND p.idProgramacion="+partido)
+    dt4=db.fetchone()
+
+    Datos=[dt[0],dt1[0],dt2[0],dt3[0],dt4[0]]
+    return Datos

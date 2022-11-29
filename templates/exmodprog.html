@@ -1,0 +1,20 @@
+{% extends "model_prog.html" %}
+
+{% block formulario%}
+
+<h4>Programacion de partidos </h4>
+<form action="" method="post" novalidate>
+{{form.hidden_tag()}}
+
+<p class="Formulario">
+    {{form.Partido.label}}<br>
+    {{form.Partido}}<br>
+
+</p>
+
+<p class="buton">
+    {{form.ingb()}}
+</p>
+
+{% endblock %}
+

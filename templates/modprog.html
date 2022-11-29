@@ -2,7 +2,7 @@
 
 {% block formulario%}
 {% if P==1:%}
-<h4>Edicion de partido {{pr}} </h4>
+<h4>Edicion de partidos </h4>
 
 <form action="" method="post" novalidate>
 {{form.hidden_tag()}}
@@ -10,32 +10,6 @@
 <p class="Formulario">
     {{form.Partido.label}}<br>
     {{form.Partido}}<br>
-
-<p class="Formulario">
-    {{form.Estadio.label}}<br>
-    {{form.Estadio}}<br>
-
-</p>
-<p class="Formulario">
-    {{form.Equipo1.label}}<br>
-    {{form.Equipo1}}<br>
-
-</p>
-<p class="Formulario">
-    {{form.Equipo2.label}}<br>
-    {{form.Equipo2}}<br>
-
-</p>
-<p class="Formulario">
-    {{form.Arbitro.label}}<br>
-    {{form.Arbitro}}<br>
-
-</p>
-<p class="Formulario">
-    {{form.Fecha.label}}<br>
-    {{form.Fecha}}<br>
-
-</p>
 
 <p class="buton">
     {{form.ingb()}}
