@@ -10,7 +10,7 @@ def estd(db):
         Datos.append(D[0])
     return Datos
 
-def equipos(db):
+def equiposk(db):
     Datos=['']
     db.execute("SELECT Nombre_Equipo FROM Pagina_Mundial.Equipos_Futbol")
     x=len(db.fetchall())
@@ -45,6 +45,7 @@ def ids(db,Estadio,E1,E2,Ar):
     info=[Est[0],Eq1[0],Eq2[0],arb[0],idp[0]]
     return info
    
+
 def validate(db,ida,E1,E2):
     db.execute("Select Procedencia FROM Pagina_Mundial.Arbitros where idarb= "+str(ida))
     parb=db.fetchone()
@@ -53,3 +54,9 @@ def validate(db,ida,E1,E2):
         return 1
     else:
         return 0
+
+def maxid(db):
+    db.execute("SELECT max(idProgramacion) FROM Pagina_Mundial.Programacion")
+    mid=db.fetchone()
+    return mid[0]
+    
