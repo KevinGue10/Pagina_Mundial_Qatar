@@ -1,8 +1,8 @@
 from flask import Flask,render_template,redirect,request,url_for, session,flash
 import os
 from flask_mysqldb import MySQL
-from froms import FormProg
-from Datos import estd,equipos,arb,ids,validate
+from forms import FormProg,modprog
+from Datos import estd,equiposk,arb,ids,validate,maxid
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -17,7 +17,7 @@ mysql= MySQL(app)
 @app.route("/index")
 @app.route('/')
 def index():
-    flash("FUNCIONA")
+ 
     return render_template('Pagina_inicial.html')
 
 
@@ -30,7 +30,7 @@ def Edit():
     cur= mysql.connection.cursor()
     form=FormProg()
     est=estd(cur)
-    equ=equipos(cur)
+    equ=equiposk(cur)
     arbi=arb(cur)
     for i in range (len(est)):
         form.Estadio.choices.append(est[i])
@@ -40,7 +40,6 @@ def Edit():
     for i in range (len(arbi)):
         form.Arbitro.choices.append(arbi[i])
     msg=''
-    print(form.validate_on_submit())
     if (form.validate_on_submit()):
         Estadio=request.form['Estadio']
         Equipo1=request.form['Equipo1']
@@ -58,6 +57,37 @@ def Edit():
             +str(ID[4]+1)+"','"+str(ID[0])+"','"+str(ID[1])+"','"+str(ID[2])+"','"+Fecha+"','"+str(ID[3])+"' )")
             mysql.connection.commit()
     return render_template('progc.html',form=form,msg=msg)
+
+@app.route('/modpar', methods=['GET','POST'])
+def modpr():
+    cur= mysql.connection.cursor()
+    form=modprog()
+    return render_template()
+
+@app.route('/modpr', methods=['GET','POST'])
+def modpr():
+    cur= mysql.connection.cursor()
+    form=modprog()
+    mid=maxid(cur)
+    for i in range (mid):
+        form.Partido.choices.append('Partido '+str((i+1)))
+    est=estd(cur)
+    equ=equiposk(cur)
+    arbi=arb(cur)
+    for i in range (len(est)):
+        form.Estadio.choices.append(est[i])
+    for i in range (len(equ)):
+        form.Equipo1.choices.append(equ[i])
+        form.Equipo2.choices.append(equ[i])
+    for i in range (len(arbi)):
+        form.Arbitro.choices.append(arbi[i])
+    P=1
+    if (form.validate_on_submit()):
+        Partido=request.form['Partido']
+    
+    return render_template('progc.html',form=form,P=P)
+
+
 
 @app.route('/config')
 def config():
