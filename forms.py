@@ -22,3 +22,4 @@ class modprog(FlaskForm):
 class chspar(FlaskForm):
     Partido=SelectField('Partido',choices=[])
     ingb=SubmitField('Editar')
+
