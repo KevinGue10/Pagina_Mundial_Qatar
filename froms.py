@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from flask import Flask
 from wtforms import Form,StringField,SubmitField,SelectField,DateTimeField
 from wtforms.validators import DataRequired
+
 class FormProg(FlaskForm):
     
     Estadio=SelectField('Estadio',choices=[])
@@ -10,5 +11,4 @@ class FormProg(FlaskForm):
     Arbitro=SelectField('Arbitro',choices=[])
     Fecha=DateTimeField('Fecha_Hora',validators=[DataRequired(message='llene este campo')])
     ingb=SubmitField('Ingresar')
-    
- 
+

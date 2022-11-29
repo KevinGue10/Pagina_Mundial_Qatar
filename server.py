@@ -2,7 +2,7 @@ from flask import Flask,render_template,redirect,request,url_for, session,flash
 import os
 from flask_mysqldb import MySQL
 from froms import FormProg
-from Datos import estd,equipos,arb,ids,validate
+from Datos import estd,equiposk,arb,ids,validate
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -30,7 +30,7 @@ def Edit():
     cur= mysql.connection.cursor()
     form=FormProg()
     est=estd(cur)
-    equ=equipos(cur)
+    equ=equiposk(cur)
     arbi=arb(cur)
     for i in range (len(est)):
         form.Estadio.choices.append(est[i])
@@ -71,10 +71,27 @@ def equipos():
 def jugadores():
     return render_template('jugadores.html')
 
-
 @app.route('/editequipos')
 def edit_equipos():
     return render_template('edit_equipos.html')
+
+
+@app.route('/add_equipo', methods=['POST'])
+def add_equipos():
+    if request.method=='POST':
+        print('entro post')
+        nombre_equipo=request.form['nombre_equipo']
+        entrenador=request.form['entrenador']
+        logo=request.form['logo']
+        grupo=request.form['grupo']
+        
+        cur= mysql.connection.cursor()
+        cur.execute("Insert INTO Pagina_Mundial.Equipos_Futbol (idEquipos_Futbol.Nombre_Equipo, Entrenador, Logo, Grupo) VALUES ('"
+            +nombre_equipo+"','"+entrenador+"','"+logo+"','"+grupo+"')")
+        # cur.execute=('INSERT INTO Pagina_Mundial.Equipos_Futbol (Nombre_Equipo, Entrenador, Logo, Grupo) VALUES (%s, %s, %s, %s)',
+        # (nombre_equipo, entrenador, logo, grupo))
+        mysql.connection.commit()
+    return redirect(url_for('edit_equipos'))
 
 @app.route('/editjugadores')
 def edit_jugadores():
