@@ -48,7 +48,6 @@ def Edit():
         Fecha=request.form['Fecha']
         ID=ids(cur,Estadio,Equipo1,Equipo2,Arbitro)
         vd=validate(cur,ID[3],Equipo1,Equipo2)
-        print(vd)
         if (vd==1):
             msg='ERROR: ARBITRO INVALIDO PARA ESTE PARTIDO'
         else: 
@@ -62,28 +61,55 @@ def Edit():
 def modpar():
     cur= mysql.connection.cursor()
     form=chspar()
-    form2=modprog()
-    mid=maxid(cur)
+    form2=FormProg()
+    mid=maxid(cur)  
     for i in range (mid):
         form.Partido.choices.append('Partido '+str((i+1)))
     print(form.validate_on_submit())
     if (form.validate_on_submit()):
         Partido=request.form['Partido']
         est=estd(cur)
-        equ=equiposk(cur)
         arbi=arb(cur)
-        comp=edits(cur,Partido)
+        equ=equiposk(cur)
+        Partido=Partido.split('Partido')
+        comp=edits(cur,Partido[1],est,equ,arbi)
         for i in range (len(est)):
             if i==0:
+                form2.Estadio.choices.append(est[comp[0]])
+            elif i!=comp[0]:  
                 form2.Estadio.choices.append(est[i])
-            else:    
-                form2.Estadio.choices.append(est[i])
+        print("Eq1= "+str(comp[1])+" Eq2= "+str(comp[2]))
         for i in range (len(equ)):
-            form2.Equipo1.choices.append(equ[i])
-            form2.Equipo2.choices.append(equ[i])
+            if i==0:
+                form2.Equipo1.choices.append(equ[comp[1]])
+                form2.Equipo2.choices.append(equ[comp[2]])
+            else:
+                if i!=comp[1]:
+                    form2.Equipo1.choices.append(equ[i]) 
+                if i!=comp[2]:
+                    form2.Equipo2.choices.append(equ[i])
         for i in range (len(arbi)):
-            form2.Arbitro.choices.append(arbi[i])
-        return render_template('progc.html',form=form2,P=1,pr=Partido)
+            if i==0:
+                form2.Arbitro.choices.append(arbi[comp[3]])
+            elif i!=comp[3]:
+                form2.Arbitro.choices.append(arbi[i])
+        form2.Fecha.data=comp[4]
+        if (form2.validate_on_submit()):
+            Estadio=request.form2['Estadio']
+            Equipo1=request.form2['Equipo1']
+            Equipo2=request.form2['Equipo2']
+            Arbitro=request.form2['Arbitro']
+            Fecha=request.form2['Fecha']
+            ID=ids(cur,Estadio,Equipo1,Equipo2,Arbitro)
+            vd=validate(cur,ID[3],Equipo1,Equipo2)
+            if (vd==1):
+                msg='ERROR: ARBITRO INVALIDO PARA ESTE PARTIDO'
+            else: 
+                
+                cur.execute("UPDATE Pagina_Mundial.Programacion Set Estadio_prog = '"+str(ID[0])+"', id_local= '"+str(ID[1])+"' ,id_visitante= '"+
+                +str(ID[2])+"', Fecha= '"+Fecha+"', Arbitro= '"++str(ID[3])+"' Where idProgramacion= "+str(Partido[1]))
+                mysql.connection.commit()
+        return render_template('progc.html',form=form2,P=1,pr=Partido[1])
         
     else:
         return render_template('exmodprog.html',form=form)
