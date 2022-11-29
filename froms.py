@@ -11,4 +11,4 @@ class FormProg(FlaskForm):
     Fecha=DateTimeField('Fecha_Hora',validators=[DataRequired(message='llene este campo')])
     ingb=SubmitField('Ingresar')
     
- 
+    
