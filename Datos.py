@@ -1,4 +1,5 @@
 from flask_mysqldb import MySQL
+from datetime import datetime
 
 def estd(db):
     Datos=['']
@@ -92,3 +93,18 @@ def edits(db,partido,est,equ,arbi):
 
     Datos=[d1,d2,d3,d4,dt3[0]]
     return Datos
+
+def ctime():
+    now = datetime.now().replace(microsecond=0)
+    return now
+
+def getpartido(db,idp,now):
+    db.execute("SELECT p.Fecha FROM Pagina_Mundial.Programacion p where idProgramacion="+str(idp))
+    fechap1=db.fetchone()
+    db.execute("SELECT p.Fecha FROM Pagina_Mundial.Programacion p where idProgramacion="+str(idp+1))
+    fechap2=db.fetchone()
+    if now >=fechap1[0] and now<fechap2[0]: 
+        p=idp
+    else:
+        p=0
+    return p

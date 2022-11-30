@@ -154,7 +154,21 @@ def estadios():
 def edit_estadios():
     return render_template('edit_estadios.html')
 
-@app.route('/Partidos')
+@app.route('/Partidos', methods=['GET','POST'])
 def partidos():
-    return render_template('Partidos.html')
+    cur= mysql.connection.cursor()
+    
+    if request.method=='POST':
+        minuto=request.form['minuto']
+        segundos=request.form['Segundo']
+        descrip=request.form['Descripcion']
+        Ta=request.form.get("TarjetaA")
+        Tr=request.form.get("TarjetaR")
+        Te=request.form.get("TE")
+        gol=request.form.get("gol")
+        fin=request.form.get("finj")
+   
+    
+    return render_template('Partidos.html',fecha=fecha)
+
 
