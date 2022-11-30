@@ -1,4 +1,5 @@
 from flask_mysqldb import MySQL
+from datetime import datetime, timedelta
 
 def estd(db):
     Datos=['']
@@ -10,9 +11,10 @@ def estd(db):
         Datos.append(D[0])
     return Datos
 
-def equipos(db):
-    Datos=['']
+def equiposk(db):
+   
     db.execute("SELECT Nombre_Equipo FROM Pagina_Mundial.Equipos_Futbol")
+    Datos=['']
     x=len(db.fetchall())
     for i in range (x):
         db.execute("SELECT Nombre_Equipo FROM Pagina_Mundial.Equipos_Futbol where idEquipos_Futbol="+str(i+1))
@@ -45,11 +47,64 @@ def ids(db,Estadio,E1,E2,Ar):
     info=[Est[0],Eq1[0],Eq2[0],arb[0],idp[0]]
     return info
    
+
 def validate(db,ida,E1,E2):
     db.execute("Select Procedencia FROM Pagina_Mundial.Arbitros where idarb= "+str(ida))
     parb=db.fetchone()
-    print(parb)
     if(parb[0]==E1 or parb[0]==E2):
         return 1
     else:
         return 0
+
+def maxid(db):
+    db.execute("SELECT max(idProgramacion) FROM Pagina_Mundial.Programacion")
+    mid=db.fetchone()
+    return mid[0]
+
+def maxequ(db):
+    db.execute("SELECT max(idEquipos_Futbol) FROM Pagina_Mundial.Equipos_Futbol")
+    mid=db.fetchone()
+    return mid[0]
+    
+def edits(db,partido,est,equ,arbi):
+    print(partido)
+    db.execute("SELECT e.Nombre_est FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Estadios e Where p.Estadio_prog=e.idEstadios AND p.idProgramacion="+partido)
+    dt=db.fetchone()
+    db.execute("SELECT e.Nombre_Equipo FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Equipos_Futbol e Where p.id_local=e.idEquipos_Futbol AND p.idProgramacion="+partido)
+    dt1=db.fetchone()
+    db.execute("SELECT e.Nombre_Equipo FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Equipos_Futbol e Where p.id_visitante=e.idEquipos_Futbol AND p.idProgramacion="+partido)
+    dt2=db.fetchone()
+    db.execute("SELECT Fecha FROM Pagina_Mundial.Programacion  Where  idProgramacion="+partido)
+    dt3=db.fetchone()
+    db.execute("SELECT a.Nombre_arb FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Arbitros a Where p.Arbitro=a.idarb AND p.idProgramacion="+partido)
+    dt4=db.fetchone()
+    print("Equip1= "+str(dt1[0])+ " Equip2= "+str(dt2[0]))
+    for i in range (len(est)): 
+            if est[i]==dt[0]:
+                d1=i
+    for i in range (len(equ)):
+        if equ[i]==dt1[0]:
+            d2=i
+        if equ[i]==dt2[0]:
+            d3=i
+    for i in range (len(arbi)):
+        if arbi[i]==dt4[0]:
+            d4=i
+
+    Datos=[d1,d2,d3,d4,dt3[0]]
+    return Datos
+
+def ctime():
+    now = datetime.now().replace(microsecond=0).replace(second=0)
+    nowm2= now - timedelta(hours=2)
+    now2 = now + timedelta(hours=2)
+    horas=[nowm2,now2]
+    return horas
+
+def getpartido(db):
+    # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
+    db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
+    data=db.fetchall()
+    imagen=[data[0][0],data[0][1]]
+    print(data)
+    return imagen

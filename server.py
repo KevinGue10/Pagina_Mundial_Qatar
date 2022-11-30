@@ -1,8 +1,8 @@
-from flask import Flask,render_template,redirect,request,url_for, session,flash
+from flask import Flask,render_template,redirect,request,url_for, session,flash, jsonify
 import os
 from flask_mysqldb import MySQL
-from froms import FormProg
-from Datos import estd,equipos,arb,ids,validate
+from forms import FormProg,modprog,chspar
+from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,getpartido
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -17,7 +17,7 @@ mysql= MySQL(app)
 @app.route("/index")
 @app.route('/')
 def index():
-    flash("FUNCIONA")
+ 
     return render_template('Pagina_inicial.html')
 
 
@@ -30,7 +30,7 @@ def Edit():
     cur= mysql.connection.cursor()
     form=FormProg()
     est=estd(cur)
-    equ=equipos(cur)
+    equ=equiposk(cur)
     arbi=arb(cur)
     for i in range (len(est)):
         form.Estadio.choices.append(est[i])
@@ -40,19 +40,86 @@ def Edit():
     for i in range (len(arbi)):
         form.Arbitro.choices.append(arbi[i])
     msg=''
-    print(form.validate_on_submit())
     if (form.validate_on_submit()):
         Estadio=request.form['Estadio']
         Equipo1=request.form['Equipo1']
         Equipo2=request.form['Equipo2']
         Arbitro=request.form['Arbitro']
         Fecha=request.form['Fecha']
-        query="Insert INTO Pagina_Mundial.Programacion (Estadio_prog,Partido,Fecha-Hora,Arbitro) VALUES ('') "
-    return render_template('progc.html',form=form)
+        ID=ids(cur,Estadio,Equipo1,Equipo2,Arbitro)
+        vd=validate(cur,ID[3],Equipo1,Equipo2)
+        if (vd==1):
+            msg='ERROR: ARBITRO INVALIDO PARA ESTE PARTIDO'
+        else: 
+            
+            cur.execute("Insert INTO Pagina_Mundial.Programacion (idProgramacion,Estadio_prog,id_local,id_visitante,Fecha,Arbitro) VALUES ('"
+            +str(ID[4]+1)+"','"+str(ID[0])+"','"+str(ID[1])+"','"+str(ID[2])+"','"+Fecha+"','"+str(ID[3])+"' )")
+            mysql.connection.commit()
+    return render_template('progc.html',form=form,msg=msg)
+
+@app.route('/modpar', methods=['GET','POST'])
+def modpar():
+    cur= mysql.connection.cursor()
+    form=chspar()
+    form2=FormProg()
+    mid=maxid(cur)  
+    for i in range (mid):
+        form.Partido.choices.append('Partido '+str((i+1)))
+    print(form.validate_on_submit())
+    if (form.validate_on_submit()):
+        Partido=request.form['Partido']
+        est=estd(cur)
+        arbi=arb(cur)
+        equ=equiposk(cur)
+        Partido=Partido.split('Partido')
+        comp=edits(cur,Partido[1],est,equ,arbi)
+        for i in range (len(est)):
+            if i==0:
+                form2.Estadio.choices.append(est[comp[0]])
+            elif i!=comp[0]:  
+                form2.Estadio.choices.append(est[i])
+        print("Eq1= "+str(comp[1])+" Eq2= "+str(comp[2]))
+        for i in range (len(equ)):
+            if i==0:
+                form2.Equipo1.choices.append(equ[comp[1]])
+                form2.Equipo2.choices.append(equ[comp[2]])
+            else:
+                if i!=comp[1]:
+                    form2.Equipo1.choices.append(equ[i]) 
+                if i!=comp[2]:
+                    form2.Equipo2.choices.append(equ[i])
+        for i in range (len(arbi)):
+            if i==0:
+                form2.Arbitro.choices.append(arbi[comp[3]])
+            elif i!=comp[3]:
+                form2.Arbitro.choices.append(arbi[i])
+        form2.Fecha.data=comp[4]
+        if (form2.validate_on_submit()):
+            Estadio=request.form2['Estadio']
+            Equipo1=request.form2['Equipo1']
+            Equipo2=request.form2['Equipo2']
+            Arbitro=request.form2['Arbitro']
+            Fecha=request.form2['Fecha']
+            ID=ids(cur,Estadio,Equipo1,Equipo2,Arbitro)
+            vd=validate(cur,ID[3],Equipo1,Equipo2)
+            if (vd==1):
+                msg='ERROR: ARBITRO INVALIDO PARA ESTE PARTIDO'
+            else: 
+                
+                cur.execute("UPDATE Pagina_Mundial.Programacion Set Estadio_prog = '"+str(ID[0])+"', id_local= '"+str(ID[1])+"' ,id_visitante= '"+
+                +str(ID[2])+"', Fecha= '"+Fecha+"', Arbitro= '"++str(ID[3])+"' Where idProgramacion= "+str(Partido[1]))
+                mysql.connection.commit()
+        return render_template('progc.html',form=form2,P=1,pr=Partido[1])
+        
+    else:
+        return render_template('exmodprog.html',form=form)
+
 
 @app.route('/config')
 def config():
     return render_template('config.html')
+
+
 
 @app.route('/equipos')
 def equipos():
@@ -86,4 +153,21 @@ def estadios():
 @app.route('/editestadios')
 def edit_estadios():
     return render_template('edit_estadios.html')
+
+@app.route('/Partidos', methods=['GET','POST'])
+def partidos():
+    cur= mysql.connection.cursor()
+    dat=getpartido(cur)
+    if request.method=='POST':
+        minuto=request.form['minuto']
+        segundos=request.form['Segundo']
+        descrip=request.form['Descripcion']
+        Ta=request.form.get("TarjetaA")
+        Tr=request.form.get("TarjetaR")
+        Te=request.form.get("TE")
+        gol=request.form.get("gol")
+        fin=request.form.get("finj")
+   
+    
+    return render_template('Partidos.html',fecha=dat[1],img=dat[0])
 

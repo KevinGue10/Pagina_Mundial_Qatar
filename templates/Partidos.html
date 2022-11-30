@@ -27,67 +27,70 @@
         <section class="square">
 
             <div class="contentbig">
-                <img src="https://i.ibb.co/Nmwy8qG/catar.png" id="escudo" alt="catar">
+                <img src="{{img}}" id="escudo" alt="catar">
                 <h1 class="font">vs</h1>
                 <img src="https://i.ibb.co/zfhR8JQ/pbajos.png" id="escudo" alt="pbajos">
             </div>    
 
-        <h3 class="fecha">"Fecha-Hora" </h3>
+        <h3 class="fecha">{{fecha}} </h3>
         </section>
 
     <div class="contentbig">
         
         <div class="square-left">
+            <form action="/Partidos" method="POST">
+                <h1 class="informacion">Información </h1>
 
-            <h1 class="informacion">Información </h1>
-
-            <h1 class="minuto">Minuto: </h1>
-
-            <div class="content">  
-
-                <div class="quantity">
-                    <input id="minuto" type="number" min="0" max="125" value="0">
+                <h1 class="minuto">Minuto: </h1>
+    
+                <div class="content">  
+                
+                    <div class="quantity">
+                        <input id="minuto" name="minuto" type="number" min="0" max="125" value="0">
+                    </div>
+                    <h1> : </h1>
+                    <div class="quantity">
+                        <input id="segundo" name="Segundo" type="number" min="0" max="60" value="0">
+                    </div>
+    
+                </div>   
+                
+                <h1 class="minuto">Descripción: </h1>
+                <input type="text" id="titulo" name="Descripcion" class="controls" placeholder="Ingrese la descripción">
+    
+                <h1 class="informacione">Eventos especiales: </h1>
+    
+                <label class="container">Tarjetas Amarillas
+                    <input type="checkbox" name="TarjetaA" value="1">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Tarjetas Rojo
+                    <input type="checkbox" name="TarjetaR" value="1">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Tiros de esquina
+                    <input type="checkbox" name="TE" value="1">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Goles
+                    <input type="checkbox" name="GOL" value="1">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Fin de juego
+                    <input type="checkbox" name="finj" value="1">
+                    <span class="checkmark"></span>
+                  </label>
+    
+                <div>
+    
+                    <input type="submit" class="button" value="Guardar">
+    
                 </div>
-                <h1> : </h1>
-                <div class="quantity">
-                    <input id="segundo" type="number" min="0" max="60" value="0">
-                </div>
-
-            </div>   
-            
-            <h1 class="minuto">Descripción: </h1>
-            <input type="text" id="titulo" class="controls" placeholder="Ingrese la descripción">
-
-            <h1 class="informacione">Eventos especiales: </h1>
-
-            <label class="container">Tarjetas Amarillas
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">Tarjetas Rojo
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">Tiros de esquina
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">Goles
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">Fin de juego
-                <input type="checkbox">
-                <span class="checkmark"></span>
-              </label>
-
-            <div>
-
-                <input type="button" class="button" value="Guardar">
-
+    
             </div>
 
-        </div>
+            </form>
+           
 
 
 
