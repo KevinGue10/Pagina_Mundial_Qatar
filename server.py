@@ -86,3 +86,4 @@ def estadios():
 @app.route('/editestadios')
 def edit_estadios():
     return render_template('edit_estadios.html')
+
