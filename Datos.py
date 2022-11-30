@@ -1,6 +1,5 @@
 from flask_mysqldb import MySQL
-from datetime import datetime
-from threading import Timer
+from datetime import datetime, timedelta
 
 def estd(db):
     Datos=['']
@@ -95,23 +94,17 @@ def edits(db,partido,est,equ,arbi):
     Datos=[d1,d2,d3,d4,dt3[0]]
     return Datos
 
-run= True
 def ctime():
-    global run
-    now = datetime.now().replace(microsecond=0).replace(second=0)  
-    if run:
-        Timer(30,ctime).start()
-    print(now)
-    return(now)
-ctime()
+    now = datetime.now().replace(microsecond=0).replace(second=0)
+    nowm2= now - timedelta(hours=2)
+    now2 = now + timedelta(hours=2)
+    horas=[nowm2,now2]
+    return horas
 
-def getpartido(db,idp,now):
-    db.execute("SELECT p.Fecha FROM Pagina_Mundial.Programacion p where idProgramacion="+str(idp))
-    fechap1=db.fetchone()
-    db.execute("SELECT p.Fecha FROM Pagina_Mundial.Programacion p where idProgramacion="+str(idp+1))
-    fechap2=db.fetchone()
-    if now >=fechap1[0] and now<fechap2[0]: 
-        p=idp
-    else:
-        p=0
-    return p
+def getpartido(db):
+    # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
+    db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
+    data=db.fetchall()
+    imagen=[data[0][0],data[0][1]]
+    print(data)
+    return imagen

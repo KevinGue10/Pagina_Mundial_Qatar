@@ -1,8 +1,8 @@
-from flask import Flask,render_template,redirect,request,url_for, session,flash
+from flask import Flask,render_template,redirect,request,url_for, session,flash, jsonify
 import os
 from flask_mysqldb import MySQL
 from forms import FormProg,modprog,chspar
-from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ
+from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,getpartido
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -157,7 +157,7 @@ def edit_estadios():
 @app.route('/Partidos', methods=['GET','POST'])
 def partidos():
     cur= mysql.connection.cursor()
-    
+    dat=getpartido(cur)
     if request.method=='POST':
         minuto=request.form['minuto']
         segundos=request.form['Segundo']
@@ -169,6 +169,5 @@ def partidos():
         fin=request.form.get("finj")
    
     
-    return render_template('Partidos.html')
-
+    return render_template('Partidos.html',fecha=dat[1],img=dat[0])
 
