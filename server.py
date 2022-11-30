@@ -169,6 +169,6 @@ def partidos():
         fin=request.form.get("finj")
    
     
-    return render_template('Partidos.html',fecha=fecha)
+    return render_template('Partidos.html')
 
 

@@ -1,5 +1,6 @@
 from flask_mysqldb import MySQL
 from datetime import datetime
+from threading import Timer
 
 def estd(db):
     Datos=['']
@@ -94,9 +95,15 @@ def edits(db,partido,est,equ,arbi):
     Datos=[d1,d2,d3,d4,dt3[0]]
     return Datos
 
+run= True
 def ctime():
-    now = datetime.now().replace(microsecond=0)
-    return now
+    global run
+    now = datetime.now().replace(microsecond=0).replace(second=0)  
+    if run:
+        Timer(30,ctime).start()
+    print(now)
+    return(now)
+ctime()
 
 def getpartido(db,idp,now):
     db.execute("SELECT p.Fecha FROM Pagina_Mundial.Programacion p where idProgramacion="+str(idp))
