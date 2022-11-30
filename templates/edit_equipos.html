@@ -33,87 +33,24 @@
     <section class="section btn-secondary">
         <div class="row">
 
-         <div class="dropdown">
-            <button class="dropbtn">Seleccionar Grupo</button>
-            <div class="dropdown-content">
-              <a href="#">Grupo A</a>
-              <a href="#">Grupo B</a>
-              <a href="#">Grupo C</a>
-              <a href="#">Grupo D</a>
-            </div>
-          </div>
-          <table class="redTable">
-            <thead>
-            <tr>
-            <th>Seleccionar</th>
-            <th>Nombre Equipo</th>
-            <th>Entrenador</th>
-            <th>Editar Jugadores</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td><input type="checkbox" id="delete_team1"></td>
-            <td><input type="text" value="Quatar"></td>
-            <td><input type="text" value="Felix Sanches"></td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_team2"></td>
-            <td><input type="text" value="Ecuador"></td>
-            <td><input type="text" value="Gustavo Alfaro"></td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_team3"></td>
-            <td><input type="text" value="Senegal"></td>
-            <td><input type="text" value="Aliou Cissé"></td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_team4"></td>
-            <td><input type="text" value="Paises Bajos"></td>
-            <td><input type="text" value="Louis van Gaal"></td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
-            </tr>
-            </tbody>
-            </table>
-
-            <div class="form_div">
-                <form action="/add_equipo" method="POST">
-                    <input type="text" name="nombre_equipo" placeholder="Nombre Equipo">
-                    <input type="text" name="entrenador" placeholder="Entrenador">
-                    <input type="text" name="logo" placeholder="Logo">
-                    <input type="text" name="grupo" placeholder="Grupo">
-                    <button type="submit" id="save_changes_team">
-                        Guardar cambios
-                    </button>
+            <!-- <div class="dropdown">
+                <form action="/select_group_edit" method="GET">
+                <label for="fname">Seleccionar grupo:</label>
+                   <select name="group-select" class="selectpicker">
+                   <option value="-">-</option>
+                   <option value="A">A</option>
+                   <option value="B">B</option>
+                   <option value="C">C</option>
+                   <option value="D">D</option>
+                   </select>
+                   <button class= "dropbtn" type="submit" id="save_group">
+                    Buscar
+                </button>
                 </form>
-            </div>
+              </div> -->
+              {% block tabla_equipos %}
+             {% endblock %}
+          
             </div>
 
             

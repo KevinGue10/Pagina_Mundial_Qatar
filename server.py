@@ -93,9 +93,27 @@ def modpar():
 def config():
     return render_template('config.html')
 
-@app.route('/equipos')
+@app.route('/equipos', methods=['GET','POST'])
 def equipos():
-    return render_template('equipos.html')
+    if request.method=='POST':
+        select = request.form.get('group-select')
+        print(select)
+        cur= mysql.connection.cursor()
+        cur.execute("SELECT Nombre_Equipo, Entrenador, Logo FROM Pagina_Mundial.Equipos_Futbol WHERE Grupo='"+select+"'")
+        data=cur.fetchall()
+        team1=[data[0][0],data[0][1],data[0][2]]
+        team2=[data[1][0],data[1][1],data[1][2]]
+        team3=[data[2][0],data[2][1],data[2][2]]
+        team4=[data[3][0],data[3][1],data[3][2]]
+        print(team1)
+        print(team2)
+        print(team3)
+        print(team4)
+        mysql.connection.commit()
+    # return redirect(url_for('equipos'))
+        return render_template('equipos_flask.html', t1=team1, t2=team2, t3=team3, t4=team4)
+    else:
+        return render_template('equipos.html')
 
 @app.route('/jugadores')
 def jugadores():
@@ -106,7 +124,7 @@ def edit_equipos():
     return render_template('edit_equipos.html')
 
 
-@app.route('/add_equipo', methods=['POST'])
+@app.route('/add_equipo', methods=['GET','POST'])
 def add_equipos():
     if request.method=='POST':
         print('entro post')
@@ -114,14 +132,39 @@ def add_equipos():
         entrenador=request.form['entrenador']
         logo=request.form['logo']
         grupo=request.form['grupo']
-        
         cur= mysql.connection.cursor()
-        cur.execute("Insert INTO Pagina_Mundial.Equipos_Futbol (idEquipos_Futbol.Nombre_Equipo, Entrenador, Logo, Grupo) VALUES ('"
-            +nombre_equipo+"','"+entrenador+"','"+logo+"','"+grupo+"')")
+        idq=maxequ(cur)
+        cur.execute("Insert INTO Pagina_Mundial.Equipos_Futbol (idEquipos_Futbol,Nombre_Equipo, Entrenador, Logo, Grupo) VALUES ('"
+            +str(idq+1)+"','"+nombre_equipo+"','"+entrenador+"','"+logo+"','"+grupo+"')")
         # cur.execute=('INSERT INTO Pagina_Mundial.Equipos_Futbol (Nombre_Equipo, Entrenador, Logo, Grupo) VALUES (%s, %s, %s, %s)',
         # (nombre_equipo, entrenador, logo, grupo))
         mysql.connection.commit()
     return redirect(url_for('edit_equipos'))
+
+
+@app.route('/select_group_edit', methods=['GET','POST'])
+def select_group_edit():
+    team1=0
+    team2=0
+    team3=0
+    team4=0
+    if request.method=='POST':
+        select = request.form.get('group-select')
+        print(select)
+        cur= mysql.connection.cursor()
+        cur.execute("SELECT Nombre_Equipo, Entrenador, Logo FROM Pagina_Mundial.Equipos_Futbol WHERE Grupo='"+str(select)+"'")
+        data=cur.fetchall()
+        team1=[data[0][0],data[0][1],data[0][2]]
+        team2=[data[1][0],data[1][1],data[1][2]]
+        team3=[data[2][0],data[2][1],data[2][2]]
+        team4=[data[3][0],data[3][1],data[3][2]]
+        print(team1)
+        print(team2)
+        print(team3)
+        print(team4)
+        mysql.connection.commit()
+    # return redirect(url_for('equipos'))
+    return render_template('edit_equipos_flask.html', t1=team1, t2=team2, t3=team3, t4=team4)
 
 @app.route('/editjugadores')
 def edit_jugadores():
