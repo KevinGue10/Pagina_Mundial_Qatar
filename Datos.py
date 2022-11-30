@@ -53,3 +53,4 @@ def validate(db,ida,E1,E2):
         return 1
     else:
         return 0
+

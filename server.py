@@ -3,6 +3,7 @@ import os
 from flask_mysqldb import MySQL
 from froms import FormProg
 from Datos import estd,equiposk,arb,ids,validate
+from datetime import datetime
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -70,3 +71,72 @@ def equipos():
 @app.route('/jugadores')
 def jugadores():
     return render_template('jugadores.html')
+
+@app.route('/modweb')
+def modweb():
+    dat = datetime.now()
+    date = str(dat)
+    x = date.split()
+    horac = x[1].split(':')
+    numhoract = int(horac[0])
+    horact = horac[0]+":"+horac[1]
+    cur = mysql.connection.cursor()
+    sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_local=idEquipos_Futbol"
+    cur.execute(sql)
+    local =cur.fetchall()
+    sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_visitante=idEquipos_Futbol"
+    cur.execute(sql)
+    visitante = cur.fetchall()
+    sql = "SELECT Logo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_local=idEquipos_Futbol"
+    cur.execute(sql)
+    logolocal = cur.fetchall()
+    sql = "SELECT Logo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_visitante=idEquipos_Futbol"
+    cur.execute(sql)
+    logovisitante = cur.fetchall()
+    sql = "SELECT TIME(Fecha) FROM Pagina_Mundial.Programacion WHERE DATE(Fecha)='"+x[0]+"'"
+    cur.execute(sql)
+    hora = cur.fetchall()
+
+    data = {
+        "locales": local,
+        "visitantes":  visitante,
+        "logolocales": logolocal,
+        "logovisitantes": logovisitante,
+        "hora": hora
+    }
+
+    lok = []
+    vis = []
+    logl = []
+    logv = []
+    hor = []
+    numhor = []
+    for i in data.get('locales'):
+        lok.append(i[0])
+    for i in data.get('visitantes'):
+        vis.append(i[0])
+    for i in data.get('logolocales'):
+        logl.append(i[0])
+    for i in data.get('logovisitantes'):
+        logv.append(i[0])
+    for i in data.get('hora'):
+        a = str(i[0])
+        b = a.split(':')
+        numhor.append(int(b[0]))
+        hor.append(b[0]+":"+b[1])
+    numpart = len(lok) 
+    golesL = []
+    golesV = []
+    for i in range(numpart):
+        sql = "SELECT sum(GolL)  FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        cur.execute(sql)
+        golL = cur.fetchone()
+        golesL.append(golL[0])
+        sql = "SELECT sum(GolV)  FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        cur.execute(sql)
+        golV = cur.fetchone()
+        golesV.append(golV[0])
+    print(golesL)
+    print(numhor)
+    return render_template('modweb.html',x=x[0],local=local,data=data,lok=lok,vis=vis,logl=logl,logv=logv,numpart=numpart,hor=hor,horact=horact,numhoract=numhoract,numhor=numhor,golesL=golesL,golesV=golesV)
+
