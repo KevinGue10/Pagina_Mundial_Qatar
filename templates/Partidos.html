@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='CSS/partidos.css')}}">
+    <title>Programacion</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion">Programación</a>
+                <a href="/Partidos" class="activo">Partidos on-line</a>
+            </nav>
+        </div>
+    </header>
+
+        <section class="square">
+
+            <div class="contentbig">
+                <img src="{{img}}" id="escudo" alt="catar">
+                <h1 class="font">vs</h1>
+                <img src="{{imgv}}" id="escudo" alt="pbajos">
+            </div>   
+            
+            <div class="contentbig">
+                <h3 class="name"> {{nombre}} </h3>
+                <h3 class="name">  </h3>
+                <h3 class="name"> {{nombrev}} </h3>
+            </div>
+
+            <h3 class="fecha">{{fecha}}</h3>
+        </section>
+
+    <div class="contentbig">
+        
+        <div class="square-left">
+        <form action="/Partidos" method="POST">
+
+                <h1 class="informacion">Información </h1>
+
+                <h1 class="minuto">Minuto: </h1>
+    
+                <div class="content">  
+                
+                    <div class="quantity">
+                        <input id="minuto" name="minuto" type="number" min="0" max="125" value="0">
+                    </div>
+                    <h1> : </h1>
+                    <div class="quantity">
+                        <input id="segundo" name="Segundo" type="number" min="0" max="60" value="0">
+                    </div>
+    
+                </div>   
+                
+                <h1 class="minuto">Descripción: </h1>
+                <input type="text" id="titulo" name="Descripcion" class="controls" placeholder="Ingrese la descripción">
+    
+                <h1 class="informacione">Eventos especiales: </h1>
+    
+                <label class="container">Tarjeta Amarilla
+                    <input type="checkbox" name="TarjetaA" value="Tarjeta Amarilla">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Tarjeta Roja
+                    <input type="checkbox" name="TarjetaR" value="Tarjeta Roja">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Tiro de esquina
+                    <input type="checkbox" name="TE" value="Tiro de esquina">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Gol
+                    <input type="checkbox" name="gol" value="Gol">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Fuera de lugar
+                    <input type="checkbox" name="fudl" value="Fuera de lugar">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Fin de juego
+                    <input type="checkbox" name="finj" value="Fin de juego">
+                    <span class="checkmark"></span>
+                  </label> 
+    
+            </div>
+
+            <div class="guardar">
+                <input type="submit" class="button" value="Guardar" name="guardar" onclick="">
+            </div>
+
+            
+           
+        <div class="square-right">
+            <h1 class="informacion">Estadísticas </h1>
+
+            <div class="contentbig">
+                <img src="{{img}}" id="escudo2">
+                <h1 class="font">-</h1>
+                <img src="{{imgv}}" id="escudo2" >
+            </div>
+            
+            <div class="contentstat">
+                
+                <div class="stepper-input">  
+                    <a class="btn btn-left" id="decrement" onclick="stepper(this)">-</a>
+                    <input class="input-box" name="golL" type="number" min="0" max="100" step="1" value="{{golL}}" id="my-input"  readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper(this)">+</a>
+                </div>
+                <h1 class="fontstats">Goles</h1>
+                <div class="stepper-input">
+                    <a class="btn btn-left" id="decrement" onclick="stepper1(this)"> - </a>
+                    <input class="input-box" name="golV" type="number" min="0" max="100" step="1" value="{{golV}}" id="my-input1"  readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper1(this)"> + </a>
+                </div>
+            </div>
+
+            <div class="contentstat">
+                <div class="stepper-input">  
+                    <a class="btn btn-left" id="decrement" onclick="stepper2(this)"> - </a>
+                    <input class="input-box" name="remateL" id="my-input2" type="number" min="0" max="100" step="1" value="{{remateL}}"   readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper2(this)"> + </a>
+                </div>
+                <h1 class="fontstats">Remates</h1>
+                <div class="stepper-input">
+                    <a class="btn btn-left" id="decrement" onclick="stepper3(this)"> - </a>
+                    <input class="input-box" name="remateV" id="my-input3" type="number" min="0" max="100" step="1" value="{{remateV}}" readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper3(this)"> + </a>
+                </div>                
+            </div>
+
+            <div class="contentstat">
+                <div class="stepper-input">  
+                    <a class="btn btn-left" id="decrement" onclick="stepper4(this)"> - </a>
+                    <input class="input-box" name="taraL" id="my-input4" type="number" min="0" max="100" step="1" value="{{taraL}}"   readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper4(this)"> + </a>
+                </div>
+                <h1 class="fontstats">Tarjetas amarillas</h1>
+                <div class="stepper-input">
+                    <a class="btn btn-left" id="decrement" onclick="stepper5(this)"> - </a>
+                    <input class="input-box" name="taraV" id="my-input5" type="number" min="0" max="100" step="1" value="{{taraV}}" readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper5(this)"> + </a>
+                </div>               
+            </div>
+
+            <div class="contentstat">
+                <div class="stepper-input">  
+                    <a class="btn btn-left" id="decrement" onclick="stepper6(this)"> - </a>
+                    <input class="input-box" name="tarrL" id="my-input6" type="number" min="0" max="100" step="1" value="{{tarrL}}"   readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper6(this)"> + </a>
+                </div>
+                <h1 class="fontstats">Tarjetas rojas</h1>
+
+                <div class="stepper-input">  
+                    <a class="btn btn-left" id="decrement" onclick="stepper7(this)">-</a>
+                    <input class="input-box" name="tarrV" id="my-input7" type="number" min="0" max="100" step="1" value="{{tarrV}}"   readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper7(this)">+</a>
+                </div>
+            </div>
+
+            <div class="contentstat">
+                <div class="stepper-input">  
+                    <a class="btn btn-left" id="decrement" onclick="stepper8(this)">-</a>
+                    <input class="input-box" name="tireL" id="my-input8" type="number" min="0" max="100" step="1" value="{{tireL}}"   readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper8(this)">+</a>
+                </div>
+                <h1 class="fontstats">Tiros de esquina</h1>
+
+                <div class="stepper-input">  
+                    <a class="btn btn-left" id="decrement" onclick="stepper9(this)"> - </a>
+                    <input class="input-box" name="tireV" id="my-input9" type="number" min="0" max="100" step="1" value="{{tireV}}"   readonly>
+                    <a class="btn btn-right" id="increment" onclick="stepper9(this)"> + </a>
+                </div>
+
+            </div>
+    </div>
+</form>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{url_for('static', filename='botones.js')}}"></script>
+
+</html>
