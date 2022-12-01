@@ -5,28 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="5"> -->
     <link rel="stylesheet" href="{{url_for('static',filename='./CSS/inicial.css')}}">
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='./CSS/partidos.css')}}"> -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
 
-    <title>Mundial Qatar 2022</title>
+    <title>{% block title %}Mundial Qatar 2022{% endblock %}</title>
 </head>
-
+{% block body %}
 <body>
+    {% block header %}
     <header>
         <div class="contenedor">
             <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
-            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
-           
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>           
             <nav>
-                <a href="/" class="activo">Inicio</a>
                 <a href="/Programacion">Programación</a>
-                <a href="/Inises">Partidos on-line</a>
-                <a href="/config">Configuración</a>
+                <a href="/" class="activo">Inicio</a>
+                <a href="/Partidos">Partidos on-line</a>
+        
 
             </nav>
         </div>
     </header>
-
+    {% endblock %}
+    {% block main %}
     <main>
         <div class="Banner">
             <div class="contenedor">
@@ -49,15 +52,17 @@
                         </div>
                         <div class="in_mod">
                             <h2>Partidos on-line</h2>
-                            <a href="/Pelicula2"><img src="{{url_for('static',filename='/image/online.jpg')}}" alt=""></a>
+                            <a href="/Partidos"><img src="{{url_for('static',filename='/image/online.jpg')}}" alt=""></a>       
                         </div>
                         <div class="in_mod">
                             <h2>Configuracion</h2>
                             <a href="/config"><img src="{{url_for('static',filename='/image/Configuracion.jpg')}}" alt=""></a>
+                            <h4 class="piepel" id="RPelicula3"></h4>
                         </div>
                         <div class="in_mod">
                             <h2>Vista web</h2>
-                            <a href="/Pelicula4"><img src="{{url_for('static',filename='/image/Vista.jpg')}}" alt=""></a>
+                            <a href="/modweb"><img src="{{url_for('static',filename='/image/Vista.jpg')}}" alt=""></a>
+                            <h4 class="piepel" id="RPelicula4"></h4>
                         </div>
                     </div>
                 </div>
@@ -67,6 +72,8 @@
 
         </div>
     </main>
+    {% endblock %}
 </body>
+{% endblock %}
 
 </html>

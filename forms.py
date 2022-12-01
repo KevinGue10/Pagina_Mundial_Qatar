@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask import Flask
-from wtforms import Form,StringField,SubmitField,SelectField,DateTimeField
+from wtforms import Form,StringField,SubmitField,SelectField,DateTimeField,IntegerField
 from wtforms.validators import DataRequired
 
 class FormProg(FlaskForm):
@@ -11,9 +11,8 @@ class FormProg(FlaskForm):
     Arbitro=SelectField('Arbitro',choices=[])
     Fecha=DateTimeField('Fecha_Hora',validators=[DataRequired(message='llene este campo')])
     ingb=SubmitField('Ingresar')
-    
+
 class modprog(FlaskForm):
-    Partido=SelectField('Partido',choices=[])
     Estadio=SelectField('Estadio',choices=[])
     Equipo1=SelectField('Equipo_1',choices=[])
     Equipo2=SelectField('Equipo_2',choices=[])
@@ -24,3 +23,4 @@ class modprog(FlaskForm):
 class chspar(FlaskForm):
     Partido=SelectField('Partido',choices=[])
     ingb=SubmitField('Editar')
+
