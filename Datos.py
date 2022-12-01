@@ -115,16 +115,22 @@ def ctime():
 
 def getlocal(db):
     # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
-    db.execute("SELECT e.Logo, e.Nombre_Equipo, p.Fecha,p.idProgramacion FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
+    db.execute("SELECT e.Logo, e.Nombre_Equipo, p.Fecha,p.idProgramacion FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2020-11-30 08:50:00' AND '2020-11-30 11:00:00'")
     data=db.fetchall()
-    datos=[data[0][0],data[0][1],data[0][2],data[0][3]]
+    if len(data)==0:
+        datos=[0,0,0,0]
+    else:
+        datos=[data[0][0],data[0][1],data[0][2],data[0][3]]
     return datos
 
 def getvisitante(db):
     # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
     db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_visitante AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
     data=db.fetchall()
-    datos=[data[0][0],data[0][1]]
+    if len(data)==0:
+        datos=[0,0,0,0]
+    else:
+        datos=[data[0][0],data[0][1]]
     return datos
 
 def maxidparti(db):
