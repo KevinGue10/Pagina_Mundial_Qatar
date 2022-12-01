@@ -102,8 +102,8 @@ def ctime():
     return horas
 
 def getlocal(db):
-    # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
-    db.execute("SELECT e.Logo, e.Nombre_Equipo, p.Fecha,p.idProgramacion FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2020-11-30 08:50:00' AND '2020-11-30 11:00:00'")
+    #db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
+    db.execute("SELECT e.Logo, e.Nombre_Equipo, p.Fecha,p.idProgramacion FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2020-12-01 09:06:00' AND '2020-12-01 13:06:00'")
     data=db.fetchall()
     if len(data)==0:
         datos=[0,0,0,0]
@@ -112,8 +112,8 @@ def getlocal(db):
     return datos
 
 def getvisitante(db):
-    # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
-    db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_visitante AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
+    #db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
+    db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_visitante AND p.Fecha BETWEEN '2020-12-01 09:06:00' AND '2020-12-01 13:06:00'")
     data=db.fetchall()
     if len(data)==0:
         datos=[0,0,0,0]
