@@ -1,3 +1,4 @@
+
 //boton0
 const myInput = document.getElementById("my-input");
 function stepper(btn){
@@ -27,6 +28,7 @@ function stepper1(btn){
 
     if(newValue >= min && newValue <= max){
         myInput1.setAttribute("value", newValue);
+        golV=newValue;
     }
 }
 
@@ -43,6 +45,7 @@ function stepper2(btn){
 
     if(newValue >= min && newValue <= max){
         myInput2.setAttribute("value", newValue);
+        remate=newValue;
     }
 } 
 
@@ -59,6 +62,7 @@ function stepper3(btn){
 
     if(newValue >= min && newValue <= max){
         myInput3.setAttribute("value", newValue);
+        remateV=newValue;
     }
 } 
 
@@ -75,6 +79,7 @@ function stepper4(btn){
 
     if(newValue >= min && newValue <= max){
         myInput4.setAttribute("value", newValue);
+        TaAm=newValue;
     }
 } 
 
@@ -91,6 +96,7 @@ function stepper5(btn){
 
     if(newValue >= min && newValue <= max){
         myInput5.setAttribute("value", newValue);
+        TaAmV=newValue;
     }
 } 
 
@@ -107,10 +113,12 @@ function stepper6(btn){
 
     if(newValue >= min && newValue <= max){
         myInput6.setAttribute("value", newValue);
+        TaRo=newValue;
     }
 } 
 
-//boton6
+
+//boton7
 const myInput7 = document.getElementById("my-input7");
 function stepper7(btn){
     let id = btn.getAttribute("id");
@@ -123,5 +131,40 @@ function stepper7(btn){
 
     if(newValue >= min && newValue <= max){
         myInput7.setAttribute("value", newValue);
+        TaRoV=newValue;
+    }
+} 
+
+//boton8
+const myInput8 = document.getElementById("my-input8");
+function stepper8(btn){
+    let id = btn.getAttribute("id");
+    let min = myInput8.getAttribute("min");
+    let max = myInput8.getAttribute("max");
+    let step = myInput8.getAttribute("step");
+    let val = myInput8.getAttribute("value");
+    let calcStep = (id == "increment") ? (step*1) : (step * -1);
+    let newValue = parseInt(val) + calcStep;
+
+    if(newValue >= min && newValue <= max){
+        myInput8.setAttribute("value", newValue);
+        TidEs=newValue;
+    }
+} 
+
+//boton9
+const myInput9 = document.getElementById("my-input9");
+function stepper9(btn){
+    let id = btn.getAttribute("id");
+    let min = myInput9.getAttribute("min");
+    let max = myInput9.getAttribute("max");
+    let step = myInput9.getAttribute("step");
+    let val = myInput9.getAttribute("value");
+    let calcStep = (id == "increment") ? (step*1) : (step * -1);
+    let newValue = parseInt(val) + calcStep;
+
+    if(newValue >= min && newValue <= max){
+        myInput9.setAttribute("value", newValue);
+        TidEsV=newValue;
     }
 } 

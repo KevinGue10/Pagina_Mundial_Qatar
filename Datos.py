@@ -101,10 +101,27 @@ def ctime():
     horas=[nowm2,now2]
     return horas
 
-def getpartido(db):
+def getlocal(db):
     # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
-    db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
+    db.execute("SELECT e.Logo, e.Nombre_Equipo, p.Fecha,p.idProgramacion FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
     data=db.fetchall()
-    imagen=[data[0][0],data[0][1]]
-    print(data)
-    return imagen
+    datos=[data[0][0],data[0][1],data[0][2],data[0][3]]
+    return datos
+
+def getvisitante(db):
+    # db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_local AND p.Fecha BETWEEN '"+horas[0]+"' AND '"+horas[1]+"'")
+    db.execute("SELECT e.Logo, e.Nombre_Equipo FROM Equipos_Futbol e, Programacion p WHERE e.idEquipos_Futbol=p.id_visitante AND p.Fecha BETWEEN '2022-11-30 08:50:00' AND '2022-11-30 11:00:00'")
+    data=db.fetchall()
+    datos=[data[0][0],data[0][1]]
+    return datos
+
+def maxidparti(db):
+    db.execute("SELECT max(idMinuto) FROM Pagina_Mundial.Minuto")
+    mid=db.fetchone()
+    return mid[0]
+
+def stats(db):
+    db.execute("SELECT GolL,GolV,Remate,RemateV,TaAm,TaAmV,TaRo,TaRoV,TirodE,TirodEV FROM Minuto ORDER BY idMinuto DESC LIMIT 1")
+    data=db.fetchall()
+    datos=[data[0][0],data[0][1],data[0][2],data[0][3],data[0][4],data[0][5],data[0][6],data[0][7],data[0][8],data[0][9]]
+    return datos

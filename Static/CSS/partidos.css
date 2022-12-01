@@ -23,6 +23,14 @@
   position: relative;  
 }
 
+.guardar{
+  margin-left: 6%;
+  margin-top: 15%;
+  width: 200px;
+  height: auto;
+
+}
+
 .squarelast{
     margin:auto;
     width: 40%;
@@ -85,6 +93,7 @@
     padding: 30px;
     margin-top: 50px;
     margin-left: 5%;
+    margin-right: 0%;
     border-radius: 4px;
     font-family: 'calibri';
     color: floralwhite;
@@ -97,7 +106,7 @@
     background:  rgb(52,4,28);
     padding: 30px;
     margin-top: 50px;
-    margin-left: 20%;
+    margin-left: 5%;
     margin-right: 5%;
     border-radius: 4px;
     font-family: 'calibri';
@@ -111,8 +120,26 @@
     font-size: 20px;
     margin: auto;
     margin-top: 20px;
-    font-weight: bold;
+
     text-align: center;
+}
+
+.name {
+  color: #ebe4e3;
+  font-size: 30px;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.visitante {
+  color: #ebe4e3;
+  font-size: 30px;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: right;
 }
 
 .minuto {
@@ -171,6 +198,7 @@ body {
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
+    margin-bottom: 2%;
 }
 
 .content{
@@ -490,7 +518,7 @@ input::-webkit-inner-spin-button{
 
 .stepper-input{ 
   display: flex;
-  font-size: 3em;
+  font-size: 1em;
   justify-content: center;
   width: 1%;
   height: auto;
@@ -502,7 +530,8 @@ input::-webkit-inner-spin-button{
   border: 1px solid #04341c;
   width: 30px;
   height: 26px;
-  text-align: center;
+  text-align: top;
+  font-size: 11px;
 }
 .btn:hover{
   background-color: #fff;
