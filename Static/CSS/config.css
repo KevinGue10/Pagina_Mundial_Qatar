@@ -11,7 +11,7 @@
 }
 
 body {
-    background: linear-gradient(rgba(10, 10, 20, 0.808)30%, rgba(10, 10, 20, .50)50%), url(../image/config/config_main.jpg);
+    background: linear-gradient(rgba(10, 10, 20, 0.808)30%, rgba(10, 10, 20, .50)50%), url(https://i.ibb.co/K56hj0C/config-main.jpg);
     font-family: 'Open Sans', sans-serif;
     background-position: center;
     background-size: 100%;
@@ -112,3 +112,42 @@ header nav a.activo {
     filter: contrast(1.2) saturate(1);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);}
+
+
+    .Formulario{
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .Formulario input{ 
+        width: 100%;
+        background-color: rgba(41, 41, 121, 0.432);
+        padding: 10px;
+        border-radius: 14px;
+        margin-top: 1%;
+        margin-bottom: 16px;
+        border: 1px solid #E7E7F6;
+        font-family: 'calibri';
+        font-size: 18px;
+        color: floralwhite;
+    }
+    .Formularios{ 
+        width: 100%;
+        background-color: rgba(41, 41, 121, 0.432);
+        padding: 10px;
+        border-radius: 14px;
+        margin-top: 1%;
+        margin-bottom: 16px;
+        border: 1px solid #E7E7F6;
+        font-family: 'calibri';
+        font-size: 18px;
+        color: floralwhite;
+    }
+.buttons_config{
+    display: flex;
+    justify-content: left;
+}
+
+.titulo_ag{
+    font-family: 'Open Sans', sans-serif;
+    color: beige;
+}

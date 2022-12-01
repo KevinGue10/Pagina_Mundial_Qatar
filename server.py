@@ -126,7 +126,9 @@ def equipos():
     if request.method=='POST':
         global select
         select = request.form.get('group-select')
-        if select=='B':
+        if select=='A':
+            p=0
+        elif select=='B':
             p=4
         elif select=='C':
             p=8

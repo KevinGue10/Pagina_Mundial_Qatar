@@ -22,7 +22,7 @@
             <nav>
                 <a href="/">Inicio</a>
                 <a href="/Programacion">Programación</a>
-                <a href="/Inises">Partidos on-line</a>
+                <a href="/Partidos">Partidos on-line</a>
                 <a href="/config" class="activo">Configuración</a>
         
 
@@ -32,11 +32,11 @@
     
     <section class="section btn-secondary">
         <div class="row">
-
+            <div class="buttons_config">
          <div class="dropdown">
             <form action="/equipos" method="POST">
-            <label for="fname">Seleccionar grupo:</label>
-               <select name="group-select" class="selectpicker">
+            <label for="fname" >Seleccionar grupo:</label>
+               <select class="Formularios" name="group-select" class="selectpicker">
                <option value="-">-</option>
                <option value="A">A</option>
                <option value="B">B</option>
@@ -46,23 +46,16 @@
                <button class= "dropbtn" type="submit" id="save_group">
                 Buscar
             </button>
-
-           
-            </form>
-           
-          </div>
-          <div>
             <a class= "dropbtn" href="/add_equipo" id="save_group">
                 Agregar Equipo
             </a>
-            <!-- <form action="/select_group_edit" method="GET">
-                <button class= "dropbtn">
-                    <a href="/editequipos">Editar info</a>
-                </button> -->
+          </div>
+       
+            
             </form>
-            </div>
+           
 
-          
+        </div>
             {% block tarjetas%}
              {% endblock %}
 

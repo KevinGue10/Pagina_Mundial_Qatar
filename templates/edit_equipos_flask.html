@@ -7,65 +7,36 @@
             <tr>
             <th>Nombre Equipo</th>
             <th>Entrenador</th>
-            <th>Editar Jugadores</th>
             </tr>
             </thead>
             <tbody>
             <tr>
             <td>{{t1[0]}}</td>
             <td>{{t1[1]}}</td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
             </tr>
             <tr>
             <td>{{t2[0]}}</td>
             <td>{{t2[1]}}</td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
             </tr>
             <tr>
             <td>{{t3[0]}}</td>
             <td>{{t3[1]}}</td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
             </tr>
             <tr>
             <td>{{t4[0]}}</td>
             <td>{{t4[1]}}</td>
-            <td><a href="/editjugadores">
-               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                  <path d="M16 5l3 3"></path>
-               </svg></a></td>
             </tr>
             </tbody>
             </table>
 
-            <h2>Agregar Equipo</h2>
+            <h2 class="titulo_ag">Agregar Equipo</h2>
             <div class="form_div">
                 <form action="/add_equipo" method="POST">
                     <input type="text" name="nombre_equipo" placeholder="Nombre Equipo">
                     <input type="text" name="entrenador" placeholder="Entrenador">
                     <input type="text" name="logo" placeholder="Logo">
                     <input type="text" name="grupo" placeholder="Grupo">
-                    <button type="submit" id="save_changes_team">
+                    <button type="submit" class= "dropbtn" id="save_changes_team">
                         Guardar cambios
                     </button>
                 </form>
@@ -87,13 +58,6 @@
     <td><input type="text" name="nombre_equipo" value="{{Eq[0]}}"></td>
     <td><input type="text"  name="entrenador" value="{{Eq[1]}}"></td>
     <td><input type="text"  name="grupo" value="{{Eq[3]}}"></td>
-    <td><a href="/editjugadores">
-       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-          <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-          <path d="M16 5l3 3"></path>
-       </svg></a></td>
     
     </tr>
     </tbody>
@@ -103,7 +67,7 @@
       <option value="Editar">Editar</option>
       <option value="Eliminar">Eliminar</option>
       </select>
-      <button type="submit" id="save_changes_team">
+      <button class= "dropbtn" type="submit" id="save_changes_team">
                 Enviar
       </button>
 

@@ -212,9 +212,7 @@
  }
  
  /* Change the background color of the dropdown button when the dropdown content is shown */
- .dropdown:hover .dropbtn {
-   background-color:rgb(85, 28, 56);
- }
+
 .table{
    margin-top: 20px;
 }
