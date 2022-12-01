@@ -28,7 +28,7 @@
                 <h1>
                     {{ hor[i] }}
                 </h1>
-            {% elif finpar[i] == None %}
+            {% elif finpar[i] == 0 %}
                 <h1>Juegan</h1>
             {% else %}
                 <h1>Fin</h1>
@@ -70,7 +70,7 @@
         <div class="link">
             {% if numhor[i] > numhoract or (numhor[i] == numhoract and nummin[i] > numminact) %}
 
-            {% elif finpar[i] == None %}
+            {% elif finpar[i] == 0 %}
                 <nav>
                     <a href="{{ url_for('estad', partido=i) }}">LIVE</a>
                 </nav>

@@ -85,6 +85,9 @@ def modweb():
     sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_local=idEquipos_Futbol"
     cur.execute(sql)
     local =cur.fetchall()
+    sql = "SELECT idProgramacion FROM Programacion WHERE DATE(Fecha)='"+x[0]+"'"
+    cur.execute(sql)
+    ids = cur.fetchall()
     sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_visitante=idEquipos_Futbol"
     cur.execute(sql)
     visitante = cur.fetchall()
@@ -100,6 +103,7 @@ def modweb():
 
     data = {
         "locales": local,
+        "ids": ids,
         "visitantes":  visitante,
         "logolocales": logolocal,
         "logovisitantes": logovisitante,
@@ -113,8 +117,11 @@ def modweb():
     hor = []
     numhor = []
     nummin = []
+    idst = []
     for i in data.get('locales'):
         lok.append(i[0])
+    for i in data.get('ids'):
+        idst.append(i[0])
     for i in data.get('visitantes'):
         vis.append(i[0])
     for i in data.get('logolocales'):
@@ -131,22 +138,36 @@ def modweb():
     golesL = []
     golesV = []
     finpar = []
+    print(numhor)
+    print(idst)
     for i in range(numpart):
-        sql = "SELECT sum(GolL)  FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        sql = "SELECT sum(GolL)  FROM Pagina_Mundial.Minuto where id_partido='"+str(idst[i])+"' order by id_partido desc limit 1"
         cur.execute(sql)
         golL = cur.fetchone()
         golesL.append(golL[0])
-        sql = "SELECT sum(GolV)  FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        sql = "SELECT sum(GolV)  FROM Pagina_Mundial.Minuto where id_partido='"+str(idst[i])+"' order by id_partido desc limit 1"
         cur.execute(sql)
         golV = cur.fetchone()
         golesV.append(golV[0])
-        sql = "SELECT sum(FindJu)  FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        sql = "SELECT sum(FindJu)  FROM Pagina_Mundial.Minuto where id_partido='"+str(idst[i])+"' order by id_partido desc limit 1"
         cur.execute(sql)
         fin = cur.fetchone()
         finpar.append(fin[0])
+        print(finpar)
+        
     return render_template('modweb.html',x=x[0],local=local,data=data,lok=lok,vis=vis,numminact=numminact,
                             logl=logl,logv=logv,numpart=numpart,hor=hor,horact=horact,numhoract=numhoract,
                             numhor=numhor,golesL=golesL,golesV=golesV,finpar=finpar,nummin=nummin)
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route('/estadisticas/<int:partido>')
@@ -162,6 +183,9 @@ def estad(partido):
     sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_local=idEquipos_Futbol"
     cur.execute(sql)
     local =cur.fetchall()
+    sql = "SELECT idProgramacion FROM Programacion WHERE DATE(Fecha)='"+x[0]+"'"
+    cur.execute(sql)
+    ids = cur.fetchall()
     sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_visitante=idEquipos_Futbol"
     cur.execute(sql)
     visitante = cur.fetchall()
@@ -175,13 +199,16 @@ def estad(partido):
     cur.execute(sql)
     hora = cur.fetchall()
 
+
     data = {
         "locales": local,
+        "ids": ids,
         "visitantes":  visitante,
         "logolocales": logolocal,
         "logovisitantes": logovisitante,
         "hora": hora
     }
+    
 
     lok = []
     vis = []
@@ -190,8 +217,11 @@ def estad(partido):
     hor = []
     numhor = []
     nummin = []
+    idst = []
     for i in data.get('locales'):
         lok.append(i[0])
+    for i in data.get('ids'):
+        idst.append(i[0])
     for i in data.get('visitantes'):
         vis.append(i[0])
     for i in data.get('logolocales'):
@@ -204,6 +234,7 @@ def estad(partido):
         numhor.append(int(b[0]))
         nummin.append(int(b[1]))
         hor.append(b[0]+":"+b[1])
+    
     numpart = len(lok) 
     golesL = []
     golesV = []
@@ -216,10 +247,20 @@ def estad(partido):
     taroVt = []
     tirodet = []
     tirodeVt = []
+    grupos = []
+    ird = idst[0]
+    print(ird)
+
+
     for i in range(numpart):
-        sql = "SELECT sum(GolL), sum(GolV), sum(FindJu), sum(Remate), sum(RemateV), sum(TaAm), sum(TaAmV), sum(TaRo), sum(TaRoV), sum(TirodE), sum(TirodEV) FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        print(i)
+        sql = "SELECT sum(GolL), sum(GolV), sum(FindJu), sum(Remate), sum(RemateV), sum(TaAm), sum(TaAmV), sum(TaRo), sum(TaRoV), sum(TirodE), sum(TirodEV) FROM Pagina_Mundial.Minuto where id_partido='"+str(idst[i])+"' order by id_partido desc limit 1"
         cur.execute(sql)
         golL = cur.fetchone()
+        sql = "SELECT Grupo FROM Equipos_Futbol, Programacion WHERE id_local='"+str(idst[i])+"' AND id_local=idEquipos_Futbol"
+        cur.execute(sql)
+        grupo = cur.fechone()
+        grupos.append(grupo[0])
         golesL.append(golL[0])
         golesV.append(golL[1])
         finpar.append(golL[2])
@@ -231,10 +272,54 @@ def estad(partido):
         taroVt.append(golL[8])
         tirodet.append(golL[9])
         tirodeVt.append(golL[10])
-    print(partido)
+        
+        
+
+    for i in range(numpart):
+        
+        if finpar[i]==1:
+            sql = "SELECT enday FROM Equipos_Futbol WHERE Nombre_Equipo='"+lok[i]+"'"
+            cur.execute(sql)
+            enday = cur.fetchone()
+            if enday[0] == 0:
+                if golesL[i] == None:
+                    golesL[i] = 0
+                if golesV[i] == None:
+                    golesV[i] = 0
+                if golesL[i] > golesV[i]:
+                    sql = "UPDATE Equipos_Futbol SET Puntos=Puntos+3, enday=enday+1 WHERE Nombre_Equipo='"+lok[i]+"'"
+                    cur.execute(sql)
+                    mysql.connection.commit()
+                    sql = "UPDATE Equipos_Futbol SET enday=enday+1 WHERE Nombre_Equipo='"+vis[i]+"'"
+                    cur.execute(sql)
+                    mysql.connection.commit()
+
+                elif golesL[i] < golesV[i]:
+                    sql = "UPDATE Equipos_Futbol SET Puntos=Puntos+3, enday=enday+1 WHERE Nombre_Equipo='"+vis[i]+"'"
+                    cur.execute(sql)
+                    mysql.connection.commit()
+                    sql = "UPDATE Equipos_Futbol SET enday=enday+1 WHERE Nombre_Equipo='"+lok[i]+"'"
+                    cur.execute(sql)
+                    mysql.connection.commit()
+
+    sql = "SELECT Minuto, Descrip FROM Minuto where id_partido='"+str(partido+1)+"' order by idMinuto DESC"
+    cur.execute(sql)
+    desc = cur.fetchone()   
+    minuto = desc[0]
+    descrip = desc[1]
+    
     return render_template('estadisticas.html',x=x[0],local=local,data=data,lok=lok,vis=vis,numminact=numminact,
                             logl=logl,logv=logv,numpart=numpart,hor=hor,horact=horact,numhoract=numhoract,
                             numhor=numhor,golesL=golesL,golesV=golesV,finpar=finpar,nummin=nummin,partido=partido,
                             remls=remls,remvs=remvs,taamt=taamt,taamVt=taamVt,tarot=tarot,taroVt=taroVt,
-                            tirodet=tirodet,tirodeVt=tirodeVt)    
+                            tirodet=tirodet,tirodeVt=tirodeVt,minuto=minuto,descrip=descrip)
 
+@app.route('/tablas/<grupo>')    
+def tablas(grupo):
+    sql = "SELECT Nombre_Equipo, Puntos FROM Equipos_Futbol WHERE Grupo='"+grupo+"' order by Puntos desc"
+    cur = mysql.connection.cursor()
+    cur.execute(sql)
+    ta = cur.fetchall()
+    print(ta)
+
+    return render_template('tablas.html',grupo=grupo)
