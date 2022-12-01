@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='CSS/partidos.css')}}">
+    <title>Programacion</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="contenedor">
+            <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+            <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Programacion">Programación</a>
+                <a href="/Partidos" class="activo">Partidos on-line</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="square">
+
+        <div class="contentbig">
+            <img src="{{img}}" id="escudo" >
+            <h1 class="font">vs</h1>
+            <img src="{{imgv}}" id="escudo">
+        </div>   
+        
+        <div class="contentbig">
+            <h3 class="name"> {{nombre}} </h3>
+            <h3 class="name">  </h3>
+            <h3 class="name"> {{nombrev}} </h3>
+        </div>
+
+        <h3 class="fecha">{{fecha}}</h3>
+
+        <h1 class="marcadorF">Marcador Final </h1>
+
+        <div class="contentbig">
+            <h3 class="goles">{{golL}}</h3>
+            <h3 class="goles">{{golV}}</h3>
+        </div>
+        
+    </section>
+</body>
+
+</html>

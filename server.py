@@ -2,7 +2,7 @@ from flask import Flask,render_template,redirect,request,url_for, session,flash,
 import os
 from flask_mysqldb import MySQL
 from forms import FormProg,modprog,chspar
-from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,getlocal,getvisitante,maxidparti,stats
+from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,getlocal,getvisitante,maxidparti,stats,noPaLocal,noPaVis
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -159,60 +159,67 @@ def partidos():
     cur= mysql.connection.cursor()
     dat=getlocal(cur)  
     datv=getvisitante(cur)
-    if request.method=='POST':
-        idPo=dat[3]
-        i=maxidparti(cur)
-        minuto=request.form['minuto']
-        segundos=request.form['Segundo']
-        descrip=request.form['Descripcion']
-        Ta=request.form.get("TarjetaA")
-        Tr=request.form.get("TarjetaR")
-        Te=request.form.get("TE")
-        gol=request.form.get("gol")
-        fin=request.form.get("finj")
-        fu=request.form.get("fudl")
-        
-        golL=request.form['golL']
-
-        golV=request.form['golV']
-        remateL=request.form['remateL']
-        remateV=request.form['remateV']
-        taraL=request.form['taraL']
-        taraV=request.form['taraV']
-        tarrL=request.form['tarrL']
-        tarrV=request.form['tarrV']
-        tireL=request.form['tireL']
-        tireV=request.form['tireV']
- 
-        Ta=str(Ta)+". "
-        Tr=str(Tr)+". "
-        Te=str(Te)+". "
-        gol=str(gol)+". "
-        fu=str(fu)+". "
-        fin=str(fin)
-        finp=0
-        if Ta=="None. ":
-            Ta=""
-        if Tr=="None. ":
-            Tr=""
-        if Te=="None. ":
-            Te=""
-        if gol=="None. ":
-            gol=""
-        if fu=="None. ":
-            fu=""
-        if fin=="None":
-            fin=""
-            finp=0
-        else:
-            finp=1
-        print(finp)
-        print(fin)
-        evento=Ta+Tr+Te+gol+fu+fin
-        minutos=str(minuto)+":"+str(segundos)
-        cur.execute("Insert INTO Pagina_Mundial.Minuto (id_partido,idMinuto,Minuto,Descrip,EvEsp,GolL,GolV,Remate,RemateV,TaAm,TaAmV,TaRo,TaRoV,TirodE,TirodEV,FindJu) VALUES ('"+str(idPo)+"','"+str(i+1)+"','"+minutos+"','"+descrip+"','"+evento+"','"+str(golL)+"','"+str(golV)+"','"+str(remateL)+"','"+str(remateV)+"','"+str(taraL)+"','"+str(taraV)+"','"+str(tarrL)+"','"+str(tarrV)+"','"+str(tireL)+"','"+str(tireV)+"','"+str(finp)+"')")
-        mysql.connection.commit()
+    datn=noPaLocal(cur)  
+    datnv=noPaVis(cur)
     stat=stats(cur) 
-    return render_template('Partidos.html',nombre=dat[1],img=dat[0],fecha=dat[2],nombrev=datv[1],imgv=datv[0],golL=stat[0],golV=stat[1],remateL=stat[2],remateV=stat[3],taraL=stat[4],taraV=stat[5],tarrL=stat[6],tarrV=stat[7],tireL=stat[8],tireV=stat[9])
+    fecha=dat[0]
+    if fecha!=0:
+        if request.method=='POST':
+            idPo=dat[3]
+            i=maxidparti(cur)
+            minuto=request.form['minuto']
+            segundos=request.form['Segundo']
+            descrip=request.form['Descripcion']
+            Ta=request.form.get("TarjetaA")
+            Tr=request.form.get("TarjetaR")
+            Te=request.form.get("TE")
+            gol=request.form.get("gol")
+            fin=request.form.get("finj")
+            fu=request.form.get("fudl")
+            
+            golL=request.form['golL']
+
+            golV=request.form['golV']
+            remateL=request.form['remateL']
+            remateV=request.form['remateV']
+            taraL=request.form['taraL']
+            taraV=request.form['taraV']
+            tarrL=request.form['tarrL']
+            tarrV=request.form['tarrV']
+            tireL=request.form['tireL']
+            tireV=request.form['tireV']
+    
+            Ta=str(Ta)+". "
+            Tr=str(Tr)+". "
+            Te=str(Te)+". "
+            gol=str(gol)+". "
+            fu=str(fu)+". "
+            fin=str(fin)
+            finp=0
+            if Ta=="None. ":
+                Ta=""
+            if Tr=="None. ":
+                Tr=""
+            if Te=="None. ":
+                Te=""
+            if gol=="None. ":
+                gol=""
+            if fu=="None. ":
+                fu=""
+            if fin=="None":
+                fin=""
+                finp=0
+            else:
+                finp=1
+            print(finp)
+            print(fin)
+            evento=Ta+Tr+Te+gol+fu+fin
+            minutos=str(minuto)+":"+str(segundos)
+            cur.execute("Insert INTO Pagina_Mundial.Minuto (id_partido,idMinuto,Minuto,Descrip,EvEsp,GolL,GolV,Remate,RemateV,TaAm,TaAmV,TaRo,TaRoV,TirodE,TirodEV,FindJu) VALUES ('"+str(idPo)+"','"+str(i+1)+"','"+minutos+"','"+descrip+"','"+evento+"','"+str(golL)+"','"+str(golV)+"','"+str(remateL)+"','"+str(remateV)+"','"+str(taraL)+"','"+str(taraV)+"','"+str(tarrL)+"','"+str(tarrV)+"','"+str(tireL)+"','"+str(tireV)+"','"+str(finp)+"')")
+            mysql.connection.commit()
+        return render_template('Partidos.html',img=dat[0],nombre=dat[1],fecha=dat[2],nombrev=datv[1],imgv=datv[0],golL=stat[0],golV=stat[1],remateL=stat[2],remateV=stat[3],taraL=stat[4],taraV=stat[5],tarrL=stat[6],tarrV=stat[7],tireL=stat[8],tireV=stat[9])
+    else:
+        return render_template('No-Partidos.html',img=datn[0],nombre=datn[1],fecha=datn[2],nombrev=datnv[1],imgv=datnv[0],golL=stat[0],golV=stat[1])
+
 
 
