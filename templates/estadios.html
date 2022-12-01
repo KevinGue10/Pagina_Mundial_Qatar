@@ -38,33 +38,38 @@
           <th>Nombre</th>
           <th>Capacidad</th>
           <th>Ubicación</th>
+          <th>Editar Estadio</th>
           </tr>
           </thead>
           <tbody>
+          {% for i in range(tne)%}   
           <tr>
-          <td>Ahmad bin ali</td>
-          <td>40000</td>
-          <td>Doha</td>
+          <td>{{ne[i]}}</td>
+          <td>{{ce[i]}}</td>
+          <td>{{ub[i]}}</td>
+          <td><a href="/editestadios{{i+1}}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+               <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+               <path d="M16 5l3 3"></path>
+            </svg></a></td>
           </tr>
-          <tr>
-          <td>Al bayt</td>
-          <td>60000</td>
-          <td>Doha</td>
-          </tr>
-          <tr>
-          <td>Khalifa</td>
-          <td>40000</td>
-          <td>Doha</td>
-          </tr>
-          <tr>
-          <td>Lusail</td>
-          <td>80000</td>
-          <td>Lusail</td>
-          </tr>
+          {%endfor%}
           </tbody>
           </table>
           </div>
-          <a href="/editestadios"><button class="button_delete"id="edit_arbitro">Editar estadios</button></a>
+
+          <h2>Agregar Estadio</h2>
+            <div class="form_div">
+                <form action="/estadios" method="POST">
+                    <input type="text" name="nest" placeholder="Nombre Estadio">
+                    <input type="text" name="cest" placeholder="Capacidad">
+                    <input type="text" name="ubc" placeholder="Ubicación">
+                    <button type="submit" id="save_changes_team">
+                        Agregar Estadio
+                    </button>
+                </form>
           </section>
 </body>
 

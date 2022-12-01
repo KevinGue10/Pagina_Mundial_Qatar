@@ -2,7 +2,7 @@ from flask import Flask,render_template,redirect,request,url_for, session,flash
 import os
 from flask_mysqldb import MySQL
 from forms import FormProg,modprog,chspar
-from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ
+from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,maxida,maxest,maxj
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
@@ -11,7 +11,7 @@ app.config['MYSQL_USER'] = 'admin'
 app.config['MYSQL_PASSWORD'] = 'Arrozycarne21'
 app.config['MYSQL_DB'] = 'Pagina_Mundial' 
 mysql= MySQL(app)
-
+select='C'
 
 @app.route("/home")
 @app.route("/index")
@@ -96,8 +96,14 @@ def config():
 @app.route('/equipos', methods=['GET','POST'])
 def equipos():
     if request.method=='POST':
+        global select
         select = request.form.get('group-select')
-        print(select)
+        if select=='B':
+            p=4
+        elif select=='C':
+            p=8
+        elif select=='D':
+            p=12       
         cur= mysql.connection.cursor()
         cur.execute("SELECT Nombre_Equipo, Entrenador, Logo FROM Pagina_Mundial.Equipos_Futbol WHERE Grupo='"+select+"'")
         data=cur.fetchall()
@@ -105,20 +111,68 @@ def equipos():
         team2=[data[1][0],data[1][1],data[1][2]]
         team3=[data[2][0],data[2][1],data[2][2]]
         team4=[data[3][0],data[3][1],data[3][2]]
-        print(team1)
-        print(team2)
-        print(team3)
-        print(team4)
+    
         mysql.connection.commit()
     # return redirect(url_for('equipos'))
-        return render_template('equipos_flask.html', t1=team1, t2=team2, t3=team3, t4=team4)
+        return render_template('equipos_flask.html', t1=team1, t2=team2, t3=team3, t4=team4,p=p)
     else:
         return render_template('equipos.html')
 
-@app.route('/jugadores')
-def jugadores():
-    return render_template('jugadores.html')
+@app.route('/jugadores<int:j>', methods=['GET','POST'])
+def jugadores(j):
+    cur= mysql.connection.cursor()
+    cur.execute("SELECT Nombre_Jugador, Apellido_Jugador , Numero FROM Pagina_Mundial.Jugadores_Eq Where Equipo_pert= "+str(j))
+    data=cur.fetchall()
+    nj=[]
+    aj=[]
+    nm=[]
+    msg=''
+    for i in range(len(data)):
+        nj.append(data[i][0])
+        aj.append(data[i][1])
+        nm.append(data[i][2])
+        
+    if request.method=='POST':
+        if len(nj)>=20:
+            msg='No se puede agregar mas jugadores el equipo esta completo'
+        else:
+            nomb=request.form['nomb']
+            apl=request.form['apl']
+            num=request.form['num']
+            idj=maxj(cur)
+            cur.execute("Insert INTO Pagina_Mundial.Jugadores_Eq (id_jugador,Nombre_jugador, Apellido_jugador, Numero, Equipo_pert) VALUES ('"
+                +str(idj+1)+"','"+nomb+"','"+apl+"','"+num+"','"+str(j)+"')")
+            mysql.connection.commit()
+    
+    return render_template('jugadores.html',nj=nj,aj=aj,nm=nm,tnj=len(nj),j=j,msg=msg)
 
+@app.route('/editjugadores<int:p><int:j>', methods=['GET','POST'])
+def edit_jugadores(p,j):
+
+    cur= mysql.connection.cursor()
+    ijg=p+((j-1)*20)
+    print(ijg)
+    cur.execute("SELECT Nombre_Jugador, Apellido_Jugador, Numero FROM Pagina_Mundial.Jugadores_Eq Where id_Jugador="+str(ijg))
+    data=cur.fetchall()
+    print(data)
+    print(p)
+    nj=data[0][0]
+    aj=data[0][1]
+    nm=data[0][2]
+    if request.method=='POST':
+        tp = request.form.get('seled')
+        nmj=request.form['nmj']
+        apj=request.form['apj']
+        nmr=request.form['nmr']
+        if tp=='Editar':
+            cur.execute("UPDATE Pagina_Mundial.Jugadores_Eq Set Nombre_Jugador = '"+str(nmj)+"',Apellido_Jugador= '"+str(apj)+"' ,Numero= '"+
+                str(nmr)+"',Equipo_pert= '"+str(j)+"' WHERE id_jugador="+str(ijg))
+            mysql.connection.commit()
+        else:
+            cur.execute("DELETE FROM Pagina_Mundial.Jugadores_Eq WHERE id_jugador="+str(ijg))
+            mysql.connection.commit()
+
+    return render_template('edit_jugadores.html',nj=nj,aj=aj,nm=nm,ep=(p+j))
 @app.route('/editequipos')
 def edit_equipos():
     return render_template('edit_equipos.html')
@@ -126,62 +180,147 @@ def edit_equipos():
 
 @app.route('/add_equipo', methods=['GET','POST'])
 def add_equipos():
-    if request.method=='POST':
-        print('entro post')
-        nombre_equipo=request.form['nombre_equipo']
-        entrenador=request.form['entrenador']
-        logo=request.form['logo']
-        grupo=request.form['grupo']
-        cur= mysql.connection.cursor()
-        idq=maxequ(cur)
-        cur.execute("Insert INTO Pagina_Mundial.Equipos_Futbol (idEquipos_Futbol,Nombre_Equipo, Entrenador, Logo, Grupo) VALUES ('"
-            +str(idq+1)+"','"+nombre_equipo+"','"+entrenador+"','"+logo+"','"+grupo+"')")
-        # cur.execute=('INSERT INTO Pagina_Mundial.Equipos_Futbol (Nombre_Equipo, Entrenador, Logo, Grupo) VALUES (%s, %s, %s, %s)',
-        # (nombre_equipo, entrenador, logo, grupo))
-        mysql.connection.commit()
-    return redirect(url_for('edit_equipos'))
-
-
-@app.route('/select_group_edit', methods=['GET','POST'])
-def select_group_edit():
     team1=0
     team2=0
     team3=0
     team4=0
+    print(select)
+    cur= mysql.connection.cursor()
+    cur.execute("SELECT Nombre_Equipo, Entrenador, Logo FROM Pagina_Mundial.Equipos_Futbol WHERE Grupo='"+str(select)+"'")
+    data=cur.fetchall()
+    team1=[data[0][0],data[0][1],data[0][2]]
+    team2=[data[1][0],data[1][1],data[1][2]]
+    team3=[data[2][0],data[2][1],data[2][2]]
+    team4=[data[3][0],data[3][1],data[3][2]]
+ 
+    mysql.connection.commit()
     if request.method=='POST':
-        select = request.form.get('group-select')
-        print(select)
-        cur= mysql.connection.cursor()
-        cur.execute("SELECT Nombre_Equipo, Entrenador, Logo FROM Pagina_Mundial.Equipos_Futbol WHERE Grupo='"+str(select)+"'")
-        data=cur.fetchall()
-        team1=[data[0][0],data[0][1],data[0][2]]
-        team2=[data[1][0],data[1][1],data[1][2]]
-        team3=[data[2][0],data[2][1],data[2][2]]
-        team4=[data[3][0],data[3][1],data[3][2]]
-        print(team1)
-        print(team2)
-        print(team3)
-        print(team4)
+        nombre_equipo=request.form['nombre_equipo']
+        entrenador=request.form['entrenador']
+        logo=request.form['logo']
+        grupo=request.form['grupo']
+        idq=maxequ(cur)
+        cur.execute("Insert INTO Pagina_Mundial.Equipos_Futbol (idEquipos_Futbol,Nombre_Equipo, Entrenador, Logo, Grupo) VALUES ('"
+            +str(idq+1)+"','"+nombre_equipo+"','"+entrenador+"','"+logo+"','"+grupo+"')")
         mysql.connection.commit()
-    # return redirect(url_for('equipos'))
-    return render_template('edit_equipos_flask.html', t1=team1, t2=team2, t3=team3, t4=team4)
+    return render_template('edit_equipos_flask.html', t1=team1, t2=team2, t3=team3, t4=team4,e=0)
 
-@app.route('/editjugadores')
-def edit_jugadores():
-    return render_template('edit_jugadores.html')
 
-@app.route('/arbitros')
+@app.route('/select_group_edit<int:p>', methods=['GET','POST'])
+def select_group_edit(p):
+    team=0
+    np=p
+    print(select)
+    if select=='B':
+            np=p+4
+    elif select=='C':
+            np=p+8
+    elif select=='D':
+            np=p+12       
+    cur= mysql.connection.cursor()
+    cur.execute("SELECT Nombre_Equipo, Entrenador, Logo, Grupo FROM Pagina_Mundial.Equipos_Futbol WHERE idEquipos_Futbol="+str(np))
+    data=cur.fetchall()
+    print(data)
+    team=[data[0][0],data[0][1],data[0][2],data[0][3]]
+    print(request.method)
+    if request.method=='POST':
+        
+        tp = request.form.get('seled')
+        nombre_equipo=request.form['nombre_equipo']
+        entrenador=request.form['entrenador']
+        grupo=request.form['grupo']
+
+        if tp=='Editar':
+            cur.execute("UPDATE Pagina_Mundial.Equipos_Futbol Set nombre_equipo = '"+str(nombre_equipo)+"',entrenador= '"+str(entrenador)+"' ,grupo= '"+
+                grupo+"' WHERE idEquipos_Futbol="+str(np))
+            mysql.connection.commit()
+        else:
+            cur.execute("DELETE FROM Pagina_Mundial.Equipos_Futbol WHERE  idEquipos_Futbol="+str(np))
+            mysql.connection.commit()
+    return render_template('edit_equipos_flask.html', Eq=team,e=1,ep=p)
+
+
+
+@app.route('/arbitros',methods=['GET','POST'])
 def arbitros():
-    return render_template('arbitros.html')
+    cur= mysql.connection.cursor()
+    cur.execute("SELECT Nombre_arb, Procedencia FROM Pagina_Mundial.Arbitros")
+    data=cur.fetchall()
+    na=[]
+    pa=[]
+    for i in range(len(data)):
+        na.append(data[i][0])
+        pa.append(data[i][1])
+    if request.method=='POST':
+        narb=request.form['narb']
+        parb=request.form['parb']
+        ida=maxida(cur)
+        cur.execute("Insert INTO Pagina_Mundial.Arbitros (idarb,Nombre_arb, Procedencia) VALUES ('"
+            +str(ida+1)+"','"+narb+"','"+parb+"')")
+        mysql.connection.commit()
+    return render_template('arbitros.html',na=na,tna=len(na),pa=pa)
 
-@app.route('/editarbitros')
-def edit_arbitros():
-    return render_template('edit_arbitros.html')
+@app.route('/editarbitros<int:p>',methods=['GET','POST'])
+def edit_arbitros(p):
+    cur= mysql.connection.cursor()
+    cur.execute("SELECT Nombre_arb, Procedencia FROM Pagina_Mundial.Arbitros")
+    data=cur.fetchall()
+    na=data[p-1][0]
+    pa=data[p-1][1]
+    if request.method=='POST':
+        tp = request.form.get('seled')
+        narb=request.form['narb']
+        parb=request.form['parb']
+        
+        if tp=='Editar':
+            cur.execute("UPDATE Pagina_Mundial.Arbitros Set Nombre_arb = '"+str(narb)+"', Procedencia= '"+str(parb)+"' WHERE idarb="+str(p))
+            mysql.connection.commit()
+        else:
+            cur.execute("DELETE FROM Pagina_Mundial.Arbitros WHERE  idarb="+str(p))
+            mysql.connection.commit()
 
-@app.route('/estadios')
+    return render_template('edit_arbitros.html',na=na,pa=pa,ep=p)
+
+@app.route('/estadios',methods=['GET','POST'])
 def estadios():
-    return render_template('estadios.html')
+    cur= mysql.connection.cursor()
+    cur.execute("SELECT Nombre_est, Capacidad, Ubicacion FROM Pagina_Mundial.Estadios")
+    data=cur.fetchall()
+    ne=[]
+    ce=[]
+    ub=[]
+    for i in range(len(data)):
+        ne.append(data[i][0])
+        ce.append(data[i][1])
+        ub.append(data[i][2])
+    if request.method=='POST':
+        nest=request.form['nest']
+        cest=request.form['cest']
+        ubc=request.form['ubc']
+        ide=maxest(cur)
+        cur.execute("Insert INTO Pagina_Mundial.Estadios (idEstadios,Nombre_est, Capacidad, Ubicacion) VALUES ('"
+            +str(ide+1)+"','"+nest+"','"+cest+"','"+ubc+"')")
+        mysql.connection.commit()
+    return render_template('estadios.html',ne=ne,ce=ce,ub=ub,tne=len(ne))
 
-@app.route('/editestadios')
-def edit_estadios():
-    return render_template('edit_estadios.html')
+@app.route('/editestadios<int:p>',methods=['GET','POST'])
+def edit_estadios(p):
+    cur= mysql.connection.cursor()
+    cur.execute("SELECT Nombre_est, Capacidad, Ubicacion FROM Pagina_Mundial.Estadios")
+    data=cur.fetchall()
+    ne=data[p-1][0]
+    ce=data[p-1][1]
+    ub=data[p-1][2]
+    if request.method=='POST':
+        tp = request.form.get('seled')
+        nest=request.form['nest']
+        cest=request.form['cest']
+        ubc=request.form['ubc']
+        if tp=='Editar':
+            cur.execute("UPDATE Pagina_Mundial.Estadios Set Nombre_est = '"+str(nest)+"', Capacidad= '"+str(cest)+"', Ubicacion= '"+str(ubc)+"' WHERE idEstadios="+str(p))
+            mysql.connection.commit()
+        else:
+            cur.execute("DELETE FROM Pagina_Mundial.Estadios WHERE  idEstadios="+str(p))
+            mysql.connection.commit()
+
+    return render_template('edit_estadios.html',ne=ne,ce=ce,ub=ub,ep=p)

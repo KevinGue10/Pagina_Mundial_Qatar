@@ -64,6 +64,18 @@ def maxequ(db):
     db.execute("SELECT max(idEquipos_Futbol) FROM Pagina_Mundial.Equipos_Futbol")
     mid=db.fetchone()
     return mid[0]
+def maxida(db):
+    db.execute("SELECT max(idarb) FROM Pagina_Mundial.Arbitros")
+    mid=db.fetchone()
+    return mid[0]
+def maxest(db):
+    db.execute("SELECT max(idEstadios) FROM Pagina_Mundial.Estadios")
+    mid=db.fetchone()
+    return mid[0]
+def maxj(db):
+    db.execute("SELECT max(id_jugador) FROM Pagina_Mundial.Jugadores_Eq")
+    mid=db.fetchone()
+    return mid[0]
     
 def edits(db,partido):
     db.execute("SELECT e.Nombre_est FROM Pagina_Mundial.Programacion p, Pagina_Mundial.Estadios e Where p.idEstadio_prog=e.idEstadios AND p.idProgramacion="+partido)

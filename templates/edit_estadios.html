@@ -29,14 +29,13 @@
             </nav>
         </div>
     </header>
-
+    <form action="/editestadios{{ep}}" method="POST">
     <section class="section btn-secondary">
         <div class="row">
         <h1 id="titulo">Estadios</h1>
           <table class="redTable">
             <thead>
             <tr>
-            <th>Seleccionar</th>
             <th>Nombre</th>
             <th>Capacidad</th>
             <th>Ubicación</th>
@@ -44,37 +43,24 @@
             </thead>
             <tbody>
             <tr>
-            <td><input type="checkbox" id="delete_sta1"></td>
-            <td><input type="text" value="Ahmad bin ali"></td>
-            <td><input type="text" value="40000"></td>
-            <td><input type="text" value="Doha"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_sta2"></td>
-            <td><input type="text" value="Al bayt"></td>
-            <td><input type="text" value="60000"></td>
-            <td><input type="text" value="Doha"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_sta3"></td>
-            <td><input type="text" value="Khalifa"></td>
-            <td><input type="text" value="40000"></td>
-            <td><input type="text" value="Doha"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_sta4"></td>
-            <td><input type="text" value="Lusail"></td>
-            <td><input type="text" value="80000"></td>
-            <td><input type="text" value="Lusail"></td>
+            <td><input type="text" name="nest" value="{{ne}}"></td>
+            <td><input type="text" name="cest" value="{{ce}}"></td>
+            <td><input type="text" name="ubc" value="{{ub}}"></td>
             </tr>
             </tbody>
             </table>
             </div>
             <div>
-               <button class="button_delete"id="delete_stadiums">Eliminar seleccionados</button>
-               <button class="button_delete" id="save_changes_stadiums">Guardar cambios</button>
+                <select name="seled" class="selectpicker">
+                    <option value="Editar">Editar</option>
+                    <option value="Eliminar">Eliminar</option>
+                    </select>
+                    <button type="submit" id="save_changes_team">
+                              Enviar
+                    </button>
             </div> 
             </section>
+        </form>
 
         <!-- <div class="Contenedor-princpipal">
             <div class="Contenedor-Modulos">

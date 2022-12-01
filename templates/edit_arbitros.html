@@ -29,47 +29,37 @@
             </nav>
         </div>
     </header>
-
+    <form action="/editarbitros{{ep}}" method="POST">
     <section class="section btn-secondary">
         <div class="row">
         <h1 id="titulo">Jugadores</h1>
           <table class="redTable">
             <thead>
             <tr>
-            <th>Seleccionar</th>
-            <th>Nombre</th>
+            <th>Nombre</th> 
             <th>Procedencia</th>
+            
             </tr>
             </thead>
             <tbody>
             <tr>
-            <td><input type="checkbox" id="delete_ref1"></td>
-            <td><input type="text" value="Fernando Rapallini"></td>
-            <td><input type="text" value="Argentina"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_ref2"></td>
-            <td><input type="text" value="Stephanie Frappart"></td>
-            <td><input type="text" value="Francia"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_ref3"></td>
-            <td><input type="text" value="Cesar Ramos"></td>
-            <td><input type="text" value="México"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_ref4"></td>
-            <td><input type="text" value="Wilmar Roldan"></td>
-            <td><input type="text" value="Colombia"></td>
+            <td><input type="text" name="narb" value="{{na}}"></td>
+            <td><input type="text" name="parb" value="{{pa}}"></td>
             </tr>
             </tbody>
             </table>
             </div>
             <div>
-               <button class="button_delete"id="delete_arbitro">Eliminar seleccionados</button>
-               <button class="button_delete" id="save_changes_arbitro">Guardar cambios</button>
+                <select name="seled" class="selectpicker">
+                    <option value="Editar">Editar</option>
+                    <option value="Eliminar">Eliminar</option>
+                    </select>
+                    <button type="submit" id="save_changes_team">
+                              Enviar
+                    </button>
             </div> 
             </section>
+        </form>
 
         <!-- <div class="Contenedor-princpipal">
             <div class="Contenedor-Modulos">

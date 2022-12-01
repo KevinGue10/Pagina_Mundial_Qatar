@@ -29,14 +29,13 @@
             </nav>
         </div>
     </header>
-
+    <form action="/editjugadores{{ep}}" method="POST">
     <section class="section btn-secondary">
         <div class="row">
         <h1 id="titulo">Jugadores</h1>
           <table class="redTable">
             <thead>
             <tr>
-            <th>Seleccionar</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Número</th>
@@ -44,37 +43,26 @@
             </thead>
             <tbody>
             <tr>
-            <td><input type="checkbox" id="delete_player1"></td>
-            <td><input type="text" value="Meshaal"></td>
-            <td><input type="text" value="Barsham"></td>
-            <td><input type="text" value="22"></td>
+            <td><input type="text" name="nmj" value="{{nj}}"></td>
+            <td><input type="text" name="apj" value="{{aj}}"></td>
+            <td><input type="text" name="nmr" value="{{nm}}"></td>
             </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_player2"></td>
-            <td><input type="text" value="Saad"></td>
-            <td><input type="text" value="Al-Sheeb"></td>
-            <td><input type="text" value="1"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_player3"></td>
-            <td><input type="text" value="Bassam"></td>
-            <td><input type="text" value="Al-Rawi"></td>
-            <td><input type="text" value="15"></td>
-            </tr>
-            <tr>
-            <td><input type="checkbox" id="delete_player4"></td>
-            <td><input type="text" value="Tarek"></td>
-            <td><input type="text" value="Salman"></td>
-            <td><input type="text" value="5"></td>
-            </tr>
+
             </tbody>
             </table>
             </div>
-            <div>
-               <button class="button_delete"id="delete_teams">Eliminar seleccionados</button>
-               <button class="button_delete" id="save_changes_team">Guardar cambios</button>
-            </div> 
-            </section>
+               <div>
+                <div>
+                    <select name="seled" class="selectpicker">
+                        <option value="Editar">Editar</option>
+                        <option value="Eliminar">Eliminar</option>
+                        </select>
+                        <button type="submit" id="save_changes_team">
+                                  Enviar
+                        </button>
+                </div> 
+                </section>
+            </form>
 
         <!-- <div class="Contenedor-princpipal">
             <div class="Contenedor-Modulos">

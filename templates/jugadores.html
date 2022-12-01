@@ -38,33 +38,41 @@
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Número</th>
+          <th>Editar Jugador</th>
           </tr>
           </thead>
           <tbody>
+          {% for i in range(tnj)%} 
           <tr>
-          <td>Meshaal</td>
-          <td>Barsham</td>
-          <td>22</td>
+          <td>{{nj[i]}}</td>
+          <td>{{aj[i]}}</td>
+          <td>{{nm[i]}}</td>
+          <td><a href="/editjugadores{{i+1}}{{j}}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+               <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+               <path d="M16 5l3 3"></path>
+            </svg></a></td>
           </tr>
-          <tr>
-          <td>Saad</td>
-          <td>Al-Sheeb</td>
-          <td>1</td>
-          </tr>
-          <tr>
-          <td>Bassam</td>
-          <td>Al-Rawi</td>
-          <td>15</td>
-          </tr>
-          <tr>
-          <td>Tarek</td>
-          <td>Salman</td>
-          <td>5</td>
-          </tr>
+          {%endfor%}
+          
           </tbody>
           </table>
           </div>
-          </section>
+          <<h2>Agregar Jugador</h2>
+          <div class="form_div">
+
+              <form action="/jugadores{{j}}" method="POST">
+                  <input type="text" name="nomb" placeholder="Nombre">
+                  <input type="text" name="apl" placeholder="Apellido">
+                  <input type="text" name="num" placeholder="Numero">
+                  <button type="submit" id="save_changes_team">
+                      Agregar Jugador
+                  </button>
+              </form>
+              <h3>{{msg}}</h3>
+        </section>
 </body>
 
 </html>
