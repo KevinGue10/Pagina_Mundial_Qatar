@@ -125,11 +125,11 @@
     </div>
 </div>
     <div class="square-right">
-        <h1>{{ minuto+" "+descrip }}</h1>
+        <h1>{{ mins[partido]+" "+comens[partido] }}</h1>
     </div>
     <div class="square-right">
         <nav>
-            <a href="{{ url_for('tablas', grupo=i) }}">Ver Grupo</a>
+            <a href="{{ url_for('tablas', grupo=grupos[partido]) }}">Ver Grupo</a>
         </nav>
     </div>
 {% endblock %}

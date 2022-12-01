@@ -248,19 +248,29 @@ def estad(partido):
     tirodet = []
     tirodeVt = []
     grupos = []
+    mins = []
+    comens = []
     ird = idst[0]
     print(ird)
 
 
     for i in range(numpart):
-        print(i)
+        
         sql = "SELECT sum(GolL), sum(GolV), sum(FindJu), sum(Remate), sum(RemateV), sum(TaAm), sum(TaAmV), sum(TaRo), sum(TaRoV), sum(TirodE), sum(TirodEV) FROM Pagina_Mundial.Minuto where id_partido='"+str(idst[i])+"' order by id_partido desc limit 1"
         cur.execute(sql)
         golL = cur.fetchone()
-        sql = "SELECT Grupo FROM Equipos_Futbol, Programacion WHERE id_local='"+str(idst[i])+"' AND id_local=idEquipos_Futbol"
+        sql = "SELECT Grupo FROM Equipos_Futbol, Programacion WHERE idProgramacion='"+str(idst[i])+"' AND id_local=idEquipos_Futbol"
         cur.execute(sql)
-        grupo = cur.fechone()
+        grupo = cur.fetchone()
+        print(grupo)
         grupos.append(grupo[0])
+        sql = "SELECT Minuto, Descrip FROM Minuto where id_partido='"+str(idst[i])+"' order by idMinuto DESC"
+        cur.execute(sql)
+        desc = cur.fetchone()   
+        mins.append(desc[0])
+        comens.append(desc[1])
+        
+        # grupos.append(grupo[0])
         golesL.append(golL[0])
         golesV.append(golL[1])
         finpar.append(golL[2])
@@ -271,9 +281,7 @@ def estad(partido):
         tarot.append(golL[7])
         taroVt.append(golL[8])
         tirodet.append(golL[9])
-        tirodeVt.append(golL[10])
-        
-        
+        tirodeVt.append(golL[10])       
 
     for i in range(numpart):
         
@@ -281,6 +289,7 @@ def estad(partido):
             sql = "SELECT enday FROM Equipos_Futbol WHERE Nombre_Equipo='"+lok[i]+"'"
             cur.execute(sql)
             enday = cur.fetchone()
+            
             if enday[0] == 0:
                 if golesL[i] == None:
                     golesL[i] = 0
@@ -302,17 +311,12 @@ def estad(partido):
                     cur.execute(sql)
                     mysql.connection.commit()
 
-    sql = "SELECT Minuto, Descrip FROM Minuto where id_partido='"+str(partido+1)+"' order by idMinuto DESC"
-    cur.execute(sql)
-    desc = cur.fetchone()   
-    minuto = desc[0]
-    descrip = desc[1]
     
     return render_template('estadisticas.html',x=x[0],local=local,data=data,lok=lok,vis=vis,numminact=numminact,
                             logl=logl,logv=logv,numpart=numpart,hor=hor,horact=horact,numhoract=numhoract,
                             numhor=numhor,golesL=golesL,golesV=golesV,finpar=finpar,nummin=nummin,partido=partido,
                             remls=remls,remvs=remvs,taamt=taamt,taamVt=taamVt,tarot=tarot,taroVt=taroVt,
-                            tirodet=tirodet,tirodeVt=tirodeVt,minuto=minuto,descrip=descrip)
+                            tirodet=tirodet,tirodeVt=tirodeVt,grupos=grupos,desc=desc,mins=mins,comens=comens)
 
 @app.route('/tablas/<grupo>')    
 def tablas(grupo):
@@ -320,6 +324,18 @@ def tablas(grupo):
     cur = mysql.connection.cursor()
     cur.execute(sql)
     ta = cur.fetchall()
-    print(ta)
+    ta1 = ta[0]    
+    eq1 = ta1[0]
+    go1 = ta1[1]
+    ta2 = ta[1]
+    eq2 = ta2[0]
+    go2 = ta2[1]
+    ta3 = ta[2]
+    eq3 = ta3[0]
+    go3 = ta3[1]
+    ta4 = ta[3]
+    eq4 = ta4[0]
+    go4 = ta4[1]
 
-    return render_template('tablas.html',grupo=grupo)
+    return render_template('tablas.html',grupo=grupo,eq1=eq1,eq2=eq2,eq3=eq3,eq4=eq4,go1=go1,
+    go2=go2,go3=go3,go4=go4)
