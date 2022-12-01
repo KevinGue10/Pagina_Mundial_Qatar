@@ -1,0 +1,127 @@
+{% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='./CSS/partidos.css')}}"> 
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap" rel="stylesheet">
+    <title>{% block title %}Estadisticas{% endblock %}</title>
+{% endblock %}
+{% block body %}
+{% block header %}
+<header>
+    <div class="contenedor">
+        <img src="{{url_for('static',filename='/image/Logo.png')}}"></img>
+        <h2 class="logo">Copa Mundial de la FIFA Qatar 2022</h2>       
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/Programacion">Programación</a>
+            <a href="/Inises">Partidos on-line</a>
+            <a href="/config">Configuración</a>
+
+        </nav>
+    </div>
+</header>
+{% endblock %}
+{% block main %}
+<div class="square-right">
+    <h1 class="informacion">Estadísticas </h1>
+
+    <div class="contentbig">
+        <img src="{{ logl[partido] }}">
+        <h1 class="font">-</h1>
+        <img src="{{ logv[partido] }}">
+    </div>
+
+    <div class="contentstat">
+        <div class="stepper-input">
+            {% if golesL[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ golesL[partido] }}</h7>
+            {% endif %}
+        </div>
+        <h1 class="fontstats">Goles</h1>
+        <div class="stepper-input">
+            {% if golesV[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ golesV[partido] }}</h7>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="contentstat">
+        <div class="stepper-input">  
+            {% if remls[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ remls[partido] }}</h7>
+            {% endif %}
+        </div>
+        <h1 class="fontstats">Remates</h1>
+        <div class="stepper-input">
+            {% if remvs[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ remvs[partido] }}</h7>
+            {% endif %}
+        </div>                
+    </div>
+
+    <div class="contentstat">
+        <div class="stepper-input">  
+            {% if taamt[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ taamt[partido] }}</h7>
+            {% endif %}
+        </div>
+        <h1 class="fontstats">Tarjetas amarillas</h1>
+        <div class="stepper-input">
+            {% if taamVt[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ taamVt[partido] }}</h7>
+            {% endif %}
+        </div>               
+    </div>
+
+    <div class="contentstat">
+        <div class="stepper-input">  
+            {% if tarot[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ tarot[partido] }}</h7>
+            {% endif %}
+        </div>
+        <h1 class="fontstats">Tarjetas rojas</h1>
+
+        <div class="stepper-input">  
+            {% if taroVt[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ taroVt[partido] }}</h7>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="contentstat">
+        <div class="stepper-input">  
+            {% if tirodet[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ tirodet[partido] }}</h7>
+            {% endif %}
+        </div>
+        <h1 class="fontstats">Tiros de esquina</h1>
+
+        <div class="stepper-input">  
+            {% if tirodeVt[partido] == None  %} 
+                <h7>0</h7>
+            {% else %}
+                <h7>{{ tirodeVt[partido] }}</h7>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% endblock %} 

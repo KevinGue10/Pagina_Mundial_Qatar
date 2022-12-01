@@ -12,7 +12,7 @@ def estd(db):
     return Datos
 
 def equiposk(db):
-   
+    Datos=['']
     db.execute("SELECT Nombre_Equipo FROM Pagina_Mundial.Equipos_Futbol")
     Datos=['']
     x=len(db.fetchall())
