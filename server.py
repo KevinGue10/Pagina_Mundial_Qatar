@@ -530,9 +530,11 @@ def partidos():
     datv=getvisitante(cur)
     datn=noPaLocal(cur)  
     datnv=noPaVis(cur)
-    stat=stats(cur) 
+    stat=stats(cur)
+    findJ=stat[10]
     fecha=dat[0]
-    if fecha!=0:
+    nul=stat[0]
+    if fecha!=0 or findJ!=1:
         if request.method=='POST':
             idPo=dat[3]
             i=maxidparti(cur)
@@ -585,6 +587,7 @@ def partidos():
             evento=Ta+Tr+Te+gol+fu+fin
             minutos=str(minuto)+":"+str(segundos)
             cur.execute("Insert INTO Pagina_Mundial.Minuto (id_partido,idMinuto,Minuto,Descrip,EvEsp,GolL,GolV,Remate,RemateV,TaAm,TaAmV,TaRo,TaRoV,TirodE,TirodEV,FindJu) VALUES ('"+str(idPo)+"','"+str(i+1)+"','"+minutos+"','"+descrip+"','"+evento+"','"+str(golL)+"','"+str(golV)+"','"+str(remateL)+"','"+str(remateV)+"','"+str(taraL)+"','"+str(taraV)+"','"+str(tarrL)+"','"+str(tarrV)+"','"+str(tireL)+"','"+str(tireV)+"','"+str(finp)+"')")
+            stat=stats(cur)
             mysql.connection.commit()
         return render_template('Partidos.html',img=dat[0],nombre=dat[1],fecha=dat[2],nombrev=datv[1],imgv=datv[0],golL=stat[0],golV=stat[1],remateL=stat[2],remateV=stat[3],taraL=stat[4],taraV=stat[5],tarrL=stat[6],tarrV=stat[7],tireL=stat[8],tireV=stat[9])
     else:

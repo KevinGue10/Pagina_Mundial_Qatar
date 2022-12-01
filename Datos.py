@@ -139,9 +139,9 @@ def maxidparti(db):
     return mid[0]
 
 def stats(db):
-    db.execute("SELECT GolL,GolV,Remate,RemateV,TaAm,TaAmV,TaRo,TaRoV,TirodE,TirodEV FROM Minuto ORDER BY idMinuto DESC LIMIT 1")
+    db.execute("SELECT GolL,GolV,Remate,RemateV,TaAm,TaAmV,TaRo,TaRoV,TirodE,TirodEV,FindJu FROM Minuto ORDER BY idMinuto DESC LIMIT 1")
     data=db.fetchall()
-    datos=[data[0][0],data[0][1],data[0][2],data[0][3],data[0][4],data[0][5],data[0][6],data[0][7],data[0][8],data[0][9]]
+    datos=[data[0][0],data[0][1],data[0][2],data[0][3],data[0][4],data[0][5],data[0][6],data[0][7],data[0][8],data[0][9],data[0][10]]
     return datos
     
 def noPaLocal(db):
