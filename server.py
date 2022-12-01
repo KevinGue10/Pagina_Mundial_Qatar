@@ -4,7 +4,7 @@ from flask_mysqldb import MySQL
 from forms import FormProg,modprog,chspar
 from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,getlocal,getvisitante,maxidparti,stats
 from datetime import datetime
-app=Flask(__name__)6
+app=Flask(__name__)
 app.secret_key=os.urandom(24)
 
 app.config["MYSQL_HOST"] ='database-1.cjwljy7vi4kw.us-east-1.rds.amazonaws.com'
