@@ -24,12 +24,14 @@
     <div class="part">
     {% for i in range(numpart) %}
         <div class="hora">
-            {% if numhor[i] > numhoract %}
+            {% if numhor[i] > numhoract or (numhor[i] == numhoract and nummin[i] > numminact) %}
                 <h1>
                     {{ hor[i] }}
                 </h1>
-            {% else %}
+            {% elif finpar[i] == None %}
                 <h1>Juegan</h1>
+            {% else %}
+                <h1>Fin</h1>
             {% endif %}
         </div>
         <div class="log">
@@ -39,7 +41,7 @@
             <h1>{{ lok[i] }}</h1>
         </div>
         <div class="marcador">
-            {% if numhor[i] > numhoract %}
+            {% if numhor[i] > numhoract or (numhor[i] == numhoract and nummin[i] > numminact) %}
                 <h1>-</h1>
             {% elif golesL[i]==None %}
                 <h1>0</h1>
@@ -51,7 +53,7 @@
             <h1>vs</h1>
         </div>
         <div class="marcador">
-            {% if numhor[i] > numhoract %}
+            {% if numhor[i] > numhoract or (numhor[i] == numhoract and nummin[i] > numminact) %}
                 <h1>-</h1>
             {% elif golesV[i]==None %}
                 <h1>0</h1>
@@ -66,7 +68,17 @@
             <img class="log2" src="{{ logv[i] }}">
         </div>
         <div class="link">
-            <h1>link</h1>
+            {% if numhor[i] > numhoract or (numhor[i] == numhoract and nummin[i] > numminact) %}
+
+            {% elif finpar[i] == None %}
+                <nav>
+                    <a href="{{ url_for('estad', partido=i) }}">LIVE</a>
+                </nav>
+            {% else %}
+                <nav>
+                    <a href="{{ url_for('estad', partido=i) }}">LINK</a>
+                </nav>
+            {% endif %}
         </div>
     {% endfor %}
     </div>      

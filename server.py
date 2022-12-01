@@ -79,6 +79,7 @@ def modweb():
     x = date.split()
     horac = x[1].split(':')
     numhoract = int(horac[0])
+    numminact = int(horac[1])
     horact = horac[0]+":"+horac[1]
     cur = mysql.connection.cursor()
     sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_local=idEquipos_Futbol"
@@ -111,6 +112,7 @@ def modweb():
     logv = []
     hor = []
     numhor = []
+    nummin = []
     for i in data.get('locales'):
         lok.append(i[0])
     for i in data.get('visitantes'):
@@ -123,10 +125,12 @@ def modweb():
         a = str(i[0])
         b = a.split(':')
         numhor.append(int(b[0]))
+        nummin.append(int(b[1]))
         hor.append(b[0]+":"+b[1])
     numpart = len(lok) 
     golesL = []
     golesV = []
+    finpar = []
     for i in range(numpart):
         sql = "SELECT sum(GolL)  FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
         cur.execute(sql)
@@ -136,7 +140,101 @@ def modweb():
         cur.execute(sql)
         golV = cur.fetchone()
         golesV.append(golV[0])
-    print(golesL)
-    print(numhor)
-    return render_template('modweb.html',x=x[0],local=local,data=data,lok=lok,vis=vis,logl=logl,logv=logv,numpart=numpart,hor=hor,horact=horact,numhoract=numhoract,numhor=numhor,golesL=golesL,golesV=golesV)
+        sql = "SELECT sum(FindJu)  FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        cur.execute(sql)
+        fin = cur.fetchone()
+        finpar.append(fin[0])
+    return render_template('modweb.html',x=x[0],local=local,data=data,lok=lok,vis=vis,numminact=numminact,
+                            logl=logl,logv=logv,numpart=numpart,hor=hor,horact=horact,numhoract=numhoract,
+                            numhor=numhor,golesL=golesL,golesV=golesV,finpar=finpar,nummin=nummin)
+
+
+@app.route('/estadisticas/<int:partido>')
+def estad(partido):
+    dat = datetime.now()
+    date = str(dat)
+    x = date.split()
+    horac = x[1].split(':')
+    numhoract = int(horac[0])
+    numminact = int(horac[1])
+    horact = horac[0]+":"+horac[1]
+    cur = mysql.connection.cursor()
+    sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_local=idEquipos_Futbol"
+    cur.execute(sql)
+    local =cur.fetchall()
+    sql = "SELECT Nombre_Equipo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_visitante=idEquipos_Futbol"
+    cur.execute(sql)
+    visitante = cur.fetchall()
+    sql = "SELECT Logo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_local=idEquipos_Futbol"
+    cur.execute(sql)
+    logolocal = cur.fetchall()
+    sql = "SELECT Logo FROM Equipos_Futbol, Programacion WHERE DATE(Fecha)='"+x[0]+"' AND id_visitante=idEquipos_Futbol"
+    cur.execute(sql)
+    logovisitante = cur.fetchall()
+    sql = "SELECT TIME(Fecha) FROM Pagina_Mundial.Programacion WHERE DATE(Fecha)='"+x[0]+"'"
+    cur.execute(sql)
+    hora = cur.fetchall()
+
+    data = {
+        "locales": local,
+        "visitantes":  visitante,
+        "logolocales": logolocal,
+        "logovisitantes": logovisitante,
+        "hora": hora
+    }
+
+    lok = []
+    vis = []
+    logl = []
+    logv = []
+    hor = []
+    numhor = []
+    nummin = []
+    for i in data.get('locales'):
+        lok.append(i[0])
+    for i in data.get('visitantes'):
+        vis.append(i[0])
+    for i in data.get('logolocales'):
+        logl.append(i[0])
+    for i in data.get('logovisitantes'):
+        logv.append(i[0])
+    for i in data.get('hora'):
+        a = str(i[0])
+        b = a.split(':')
+        numhor.append(int(b[0]))
+        nummin.append(int(b[1]))
+        hor.append(b[0]+":"+b[1])
+    numpart = len(lok) 
+    golesL = []
+    golesV = []
+    finpar = []
+    remls = []
+    remvs = []
+    taamt = []
+    taamVt = []
+    tarot = []
+    taroVt = []
+    tirodet = []
+    tirodeVt = []
+    for i in range(numpart):
+        sql = "SELECT sum(GolL), sum(GolV), sum(FindJu), sum(Remate), sum(RemateV), sum(TaAm), sum(TaAmV), sum(TaRo), sum(TaRoV), sum(TirodE), sum(TirodEV) FROM Pagina_Mundial.Minuto where id_partido='"+str(i+1)+"' order by id_partido desc limit 1"
+        cur.execute(sql)
+        golL = cur.fetchone()
+        golesL.append(golL[0])
+        golesV.append(golL[1])
+        finpar.append(golL[2])
+        remls.append(golL[3])
+        remvs.append(golL[4])
+        taamt.append(golL[5])
+        taamVt.append(golL[6])
+        tarot.append(golL[7])
+        taroVt.append(golL[8])
+        tirodet.append(golL[9])
+        tirodeVt.append(golL[10])
+    print(partido)
+    return render_template('estadisticas.html',x=x[0],local=local,data=data,lok=lok,vis=vis,numminact=numminact,
+                            logl=logl,logv=logv,numpart=numpart,hor=hor,horact=horact,numhoract=numhoract,
+                            numhor=numhor,golesL=golesL,golesV=golesV,finpar=finpar,nummin=nummin,partido=partido,
+                            remls=remls,remvs=remvs,taamt=taamt,taamVt=taamVt,tarot=tarot,taroVt=taroVt,
+                            tirodet=tirodet,tirodeVt=tirodeVt)    
 
