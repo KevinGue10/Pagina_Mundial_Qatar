@@ -13,7 +13,6 @@ class FormProg(FlaskForm):
     ingb=SubmitField('Ingresar')
     
 class modprog(FlaskForm):
-    Partido=SelectField('Partido',choices=[])
     Estadio=SelectField('Estadio',choices=[])
     Equipo1=SelectField('Equipo_1',choices=[])
     Equipo2=SelectField('Equipo_2',choices=[])
@@ -24,3 +23,4 @@ class modprog(FlaskForm):
 class chspar(FlaskForm):
     Partido=SelectField('Partido',choices=[])
     ingb=SubmitField('Editar')
+
