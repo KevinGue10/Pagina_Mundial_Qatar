@@ -31,7 +31,7 @@ def Edit():
     cur= mysql.connection.cursor()
     form=FormProg()
     est=estd(cur)
-    equ=equipos(cur)
+    equ=equiposk(cur)
     arbi=arb(cur)
     for i in range (len(est)):
         form.Estadio.choices.append(est[i])
