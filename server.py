@@ -528,6 +528,7 @@ def partidos():
     cur= mysql.connection.cursor()
     dat=getlocal(cur)  
     datv=getvisitante(cur)
+    stats=stats(cur)
     if request.method=='POST':
         idPo=dat[3]
         i=maxidparti(cur)
