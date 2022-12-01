@@ -3,7 +3,7 @@ import os
 from flask_mysqldb import MySQL
 from forms import FormProg,modprog,chspar
 from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,maxida,maxest,maxj
-from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,getlocal,getvisitante,maxidparti,stats
+from Datos import estd,equiposk,arb,ids,validate,maxid,edits,maxequ,getlocal,getvisitante,maxidparti,stats,noPaLocal,noPaVis
 from datetime import datetime
 app=Flask(__name__)
 app.secret_key=os.urandom(24)
