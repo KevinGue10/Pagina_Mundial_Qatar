@@ -150,4 +150,6 @@ header nav a.activo {
 .titulo_ag{
     font-family: 'Open Sans', sans-serif;
     color: beige;
+    margin-top: 10px;
+    margin-left: 3%;
 }
